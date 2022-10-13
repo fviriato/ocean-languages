@@ -16,7 +16,7 @@
                     <a class="btn btn-app" href="{{ route('aluno.home') }}">
                         <i class="fas fa-users"></i>Alunos
                     </a>
-                    <a class="btn btn-app" href="{{ route('professor.home') }}">
+                    <a class="btn btn-app" href="{{ route('professor.index') }}">
                         <i class="fas fa-graduation-cap"></i> Professores
                     </a>
                     <a class="btn btn-app" href="{{ route('matricular.index') }}">

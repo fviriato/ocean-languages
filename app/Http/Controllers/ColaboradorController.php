@@ -18,7 +18,7 @@ class ColaboradorController extends Controller
     public function index()
     {
         return view('app.colaborador.index', [
-            'colaboradores' => Colaborador::all()
+            'users' => User::where('tipo', 'colaborador')->orderBy('name')->get()
         ]);
     }
 
@@ -119,9 +119,8 @@ class ColaboradorController extends Controller
     public function edit($id)
     {
         $colaborador = Colaborador::find($id);
+  
         $user = User::find($colaborador->user_id);
-
-        // dd($user);
 
         return view('app.colaborador.create', [
             'generos' => Genero::all(),
@@ -190,7 +189,6 @@ class ColaboradorController extends Controller
             $user->endereco->update($request->all());
             $user->colaborador->update($request->all());
             DB::commit();
-
         } catch (\Exception $exception) {
 
             DB::rollBack();

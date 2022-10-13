@@ -19,56 +19,32 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
+                                <th>Professor</th>
+                                <th>DT Nasc</th>
+                                <th>Telefone</th>
+                                <th>E-mail</th>
+                                <th>Ação</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-danger">55%</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Clean database</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-warning">70%</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Cron job running</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar bg-primary" style="width: 30%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-primary">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Fix and squish bugs</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar bg-success" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-success">90%</span></td>
-                            </tr>
+
+                            @foreach ($professores as $professor)
+                                <tr>
+                                    <td>{{ $professor->name }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($professor->data_nascimento)) }}</td>
+                                    <td>{{ $professor->telefone }}</td>
+                                    <td>{{ $professor->email }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('professor.edit', ['professor' => $professor->id]) }}">
+                                            <span class="badge bg-primary">Editar</span>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

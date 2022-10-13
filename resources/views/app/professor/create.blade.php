@@ -131,8 +131,8 @@
                                 value="{{ $professor->endereco->estado ?? old('estado') }}" placeholder="Ex. São Paulo">
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
+                    {{-- <hr> --}}
+                    {{-- <div class="row">
                         <form action="form-inline" id="materia_professor">
                             <div class="form-group col-sm-4">
                                 <label for="idioma_disciplina_id">Matéria</label>
@@ -163,7 +163,7 @@
                             <tr>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> --}}
                 </div>
 
                 <div class="card-footer">

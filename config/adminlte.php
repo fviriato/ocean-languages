@@ -261,22 +261,29 @@ return [
         //     //'label_color' => 'success',
         // ],
         // ['header' => 'account_settings'],
-
         [
-            'text' => "Pedagógico",
-            'url'  => '/pedagogico',
-            'icon' => 'fas fa-address-book',
-        ],
-        [
-            'text' => 'Financeiro',
-            'url'  => '/financeiro',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Home',
+            'url'  => '/home',
+            'icon' => 'fas fa-solid fa-tv',
         ],
         [
             'text' => 'Administrativo',
             'url'  => '/administrativo',
             'icon' => 'fas fa-fw fa-user',
         ],
+
+        [
+            'text' => "Pedagógico",
+            'url'  => '/pedagogico',
+            'icon' => 'fas fa-address-book',
+        ],
+
+        [
+            'text' => 'Financeiro',
+            'url'  => '/financeiro',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+
         [
             'text' => 'Gerencial',
             'url'  => '/gerencial',

@@ -22,4 +22,16 @@ class Turma extends Model
         'modalidde',
         'tipo'
     ];
+
+
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class);
+    }
+
+    public function colaborador()
+    {
+        return $this->belongsTo(Colaborador::class);
+    }
+
 }

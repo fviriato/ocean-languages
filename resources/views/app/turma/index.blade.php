@@ -34,9 +34,9 @@
                         @foreach ($turmas as $turma)
                             <tr>
                                 <td>{{ $turma->nome }}</td>
-                                <td>{{ $turma->idiomaDisciplina->nome }}</td>
-                                <td>{{ $turma->estagio->nome }}</td>
-                                <td>{{ $turma->nivel->nome }}</td>
+                                <td>{{ $turma->curso->idiomaDisciplina->nome }}</td>
+                                <td>{{ $turma->curso->estagio->nome }}</td>
+                                <td>{{ $turma->curso->nivel->nome }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('turma.edit', ['turma' => $turma->id]) }}">
                                         <span class="badge bg-primary">Editar</span>

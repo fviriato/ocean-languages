@@ -26,7 +26,7 @@
                         <i class="fas fa-book-open"></i></i>Cursos
                     </a>
                     <a class="btn btn-app" href="{{ route('turma.index') }}">
-                        <i class="fas fa-users-viewfinder"></i>Turmas de Alunos
+                        <i class="fas fa-user-graduate"></i>Turmas de Alunos
                     </a>
 
 
