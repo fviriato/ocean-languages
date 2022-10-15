@@ -14,7 +14,7 @@
                 </div>
                 <h1 class="text-center text-danger">Em Desenvolvimento</h1>
                 <div class="card-body">
-                    <a class="btn btn-app" href="">
+                    {{-- <a class="btn btn-app" href="">
                         <i class="fas fa-dollar-sign"></i>Receitas
                     </a>
                     <a class="btn btn-app" href="">
@@ -25,7 +25,7 @@
                     </a>
                     <a class="btn btn-app" href="">
                         <i class="fas fa-solid fa-barcode"></i>Boletos
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </div>

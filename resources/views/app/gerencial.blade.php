@@ -14,7 +14,7 @@
                 </div>
                 <h1 class="text-center text-danger">Em Desenvolvimento</h1>
                 <div class="card-body">
-                    <a class="btn btn-app" href="">
+                    {{-- <a class="btn btn-app" href="">
                         <i class="fas fa-school"></i> Escolas
                     </a>
                     <a class="btn btn-app" href="">
@@ -35,10 +35,9 @@
                     <a class="btn btn-app" href="">
                         <i class="fas fa-book-open"></i></i>Turmas de Alunos
                     </a>
-
                     <a class="btn btn-app" href="">
                         <i class="fas fa-user-plus"></i>Colaborador
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </div>
