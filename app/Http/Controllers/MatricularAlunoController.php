@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Genero;
-
+use App\Models\Turma;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MatricularAlunoController extends Controller
@@ -14,10 +15,9 @@ class MatricularAlunoController extends Controller
      */
     public function index()
     {
-        return view(
-            'app.matricula.enroll',
-            [
-                'generos' => Genero::all()
+        return view('app.matricula.enroll', [
+                'users' => User::where('tipo','aluno')->get(),
+                'turmas' => Turma::all()
             ]
         );
     }
@@ -40,7 +40,7 @@ class MatricularAlunoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

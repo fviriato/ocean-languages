@@ -7,7 +7,7 @@
 @section('conteudo')
 
     <div class="row">
-        <div class="col-md-10 container-fluid">
+        <div class="col-md-11 container-fluid">
             <div class="card card-purple">
                 <div class="card-header">
                     <h3 class="card-title">Matricular Aluno</h3>
@@ -30,36 +30,47 @@
                 @endif
 
                 @if (!empty($aluno->id))
-                    <form method="POST" action="{{ route('aluno.update', ['aluno' => $aluno->id]) }}">
+                    <form method="POST" action="{{ route('matricular.update', ['aluno' => $aluno->id]) }}">
                         @method('PUT')
                     @else
-                        <form method="POST" action="{{ route('aluno.store') }}">
+                        <form method="POST" action="{{ route('matricular.store') }}">
                 @endif
 
                 @csrf
                 <div class="card-body">
                     <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label for="genero_id">Aluno</label>
-                            <select name="genero_id" class="form-control form-control-sm" id="genero_id">
+                        <div class="form-group col-sm-4">
+                            <label for="user_id">Aluno</label>
+                            <select name="user_id" class="form-control form-control-sm" id="user_id">
                                 <option></option>
-                                @foreach ($generos as $genero)
-                                    <option value="{{ $genero->id }}"
-                                        {{ $aluno->genero_id ?? old('genero_id') == $genero->id ? 'selected' : '' }}>
-                                        {{ $genero->nome }}</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}"
+                                        {{ $user->user_id ?? old('user_id') == $user->id ? 'selected' : '' }}>
+                                        {{ $user->name }}</option>
                                 @endforeach
-
                             </select>
                         </div>
 
-                        <div class="form-group col-sm-4">
-                            <label for="genero_id">Curso</label>
-                            <select name="genero_id" class="form-control form-control-sm" id="genero_id">
+                        <div class="form-group col-sm-8">
+                            <label for="turma_id">Turma</label>
+                            <select name="turma_id" class="form-control form-control-sm" id="turma_id">
                                 <option></option>
-                                @foreach ($generos as $genero)
-                                    <option value="{{ $genero->id }}"
-                                        {{ $aluno->genero_id ?? old('genero_id') == $genero->id ? 'selected' : '' }}>
-                                        {{ $genero->nome }}</option>
+                                @foreach ($turmas as $turma)
+                                    <option value="{{ $turma->id }}"
+                                        {{ $turma->user_id ?? old('turma_id') == $turma->id ? 'selected' : '' }}>
+                                        {{ $turma->nome }}-
+                                        {{ $turma->curso->idiomaDisciplina->nome }}-
+                                        {{ $turma->curso->estagio->nome }}-
+                                        {{ $turma->curso->nivel->nome }}-
+                                        {{ $turma->modalidade }}-
+                                        {{ date('d/m/Y', strtotime($turma->data_inicio)) }}-
+                                        {{ date('d/m/Y', strtotime($turma->data_fim)) }}-
+                                        {{ $turma->primeiro_dia_semana }} e
+                                        {{ $turma->segundo_dia_semana }}das
+                                        {{ $turma->hora_inicio }} às
+                                        {{ $turma->hora_fim }}
+
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -68,17 +79,6 @@
 
                     <div class="row">
 
-                        <div class="form-group col-sm-5">
-                            <label for="genero_id">Turma</label>
-                            <select name="genero_id" class="form-control form-control-sm" id="genero_id">
-                                <option></option>
-                                @foreach ($generos as $genero)
-                                    <option value="{{ $genero->id }}"
-                                        {{ $aluno->genero_id ?? old('genero_id') == $genero->id ? 'selected' : '' }}>
-                                        {{ $genero->nome }}</option>
-                                @endforeach
-                            </select>
-                        </div>
 
 
                         <div class="form-group col-sm-2">
@@ -89,7 +89,8 @@
                         <div class="form-group col-sm-2">
                             <label for="estado">Data Pagamento</label>
                             <input type="number" name="data_pagamento" class="form-control form-control-sm" id="estado"
-                                value="{{ $aluno->endereco->estado ?? old('estado') }}" min="1" max="31" step="1" placeholder="Ex. 10">
+                                value="{{ $aluno->endereco->estado ?? old('estado') }}" min="1" max="31"
+                                step="1" placeholder="Ex. 10">
                         </div>
                     </div>
 

@@ -54,6 +54,7 @@ Route::resource('aluno', AlunoController::class);
 Route::get('home/professor', [ProfessorController::class, 'home'])->name('professor.home');
 Route::resource('professor', ProfessorController::class);
 Route::resource('colaborador', ColaboradorController::class);
+
 Route::resource('matricular', MatricularAlunoController::class);
 
 
@@ -68,7 +69,7 @@ Route::resource('curso', CursoController::class);
 
 // Analisar necessidade de manter as rotas abaixo
 
-
+// Route::get('professor/materia', [ProfessorController::class,'materia'])->name('professor.materia');
 Route::resource('professor', ProfessorController::class);
 Route::resource('sessao', SessaoController::class);
 

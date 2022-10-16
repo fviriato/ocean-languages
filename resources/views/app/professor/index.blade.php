@@ -12,9 +12,9 @@
                 <div class="card-header">
                     <h3 class="card-title">Relação de Professores</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('professor.home') }}">Voltar</a> &nbsp;&nbsp;&nbsp;
+                        {{-- <a class="btn-xs bg-indigo" href="{{ back() }}">Voltar</a> &nbsp;&nbsp;&nbsp; --}}
                         <a class="btn-xs bg-indigo" href="{{ route('professor.create') }}">Cadastrar Professor</a> &nbsp;&nbsp;&nbsp;
-                        <a class="btn-xs bg-indigo" href="{{ route('professor.create') }}">Atribuir Matéria</a>
+                        {{-- <a class="btn-xs bg-indigo" href="{{ route('professor.materia') }}">Atribuir Matéria</a> --}}
                     </div>
                 </div>
 
