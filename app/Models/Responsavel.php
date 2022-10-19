@@ -26,6 +26,5 @@ class Responsavel extends Model
         'responsavel_bairro',
         'responsavel_municipio',
         'responsavel_estado'
-
     ];
 }

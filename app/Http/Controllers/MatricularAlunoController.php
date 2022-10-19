@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Aluno;
 use App\Models\Genero;
 use App\Models\Turma;
 use App\Models\User;
@@ -15,8 +17,10 @@ class MatricularAlunoController extends Controller
      */
     public function index()
     {
-        return view('app.matricula.enroll', [
-                'users' => User::where('tipo','aluno')->get(),
+        return view(
+            'app.matricula.enroll',
+            [
+                'users' => User::where('tipo', 'aluno')->get(),
                 'turmas' => Turma::all()
             ]
         );
@@ -29,7 +33,7 @@ class MatricularAlunoController extends Controller
      */
     public function create()
     {
-        //
+        echo "Aluno Matriculado";
     }
 
     /**
@@ -38,9 +42,45 @@ class MatricularAlunoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function verContrato(Request $request)
     {
-        dd($request->all());
+
+        $rule = [
+            'user_id'            => 'required',
+            'turma_id'           => 'required',
+            'valor_mensal'       => 'required',
+            'data_pagamento'     => 'required',
+            'material_didatico'  => 'required',
+            'parcelas'           => 'required'
+        ];
+
+        $feedback = [
+            'user_id.required'   => 'Informar o Nome do Aluno',
+            'turma_id.required'   => 'Informar a Turma que o Aluno será Matriculado',
+            'required'     => 'O campo :attribute é obrigatorio',
+        ];
+
+        $request->validate($rule, $feedback);
+
+        $dados = $request->all();
+        $user = User::where('id', $request->input('user_id'))->get();
+
+        return view('app.contrato.aula-grupo', [
+            'user' => $user[0],
+            'turma' => Turma::find($request->input('turma_id')),
+            'contrato' => $dados
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, Aluno $aluno, Turma $turma)
+    {
+        dd($aluno[0],  $turma->all());
     }
 
     /**
@@ -49,9 +89,11 @@ class MatricularAlunoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+
+
+        dd($request->all());
     }
 
     /**

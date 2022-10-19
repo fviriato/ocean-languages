@@ -17,13 +17,20 @@ class CreateContratosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('aluno_id');
             $table->string('numero');
-            $table->date('data_inicio');
-            $table->enum('primeiro_dia_semana', ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo']);
-            $table->enum('segundo_dia_semana', ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo'])->nullable();
-            $table->time('hora_inico');
-            $table->time('hora_fim');
             $table->double('valor_mensal', 10, 2);
-            $table->string('data_pagamento');
+            $table->date('data_pagamento');
+            $table->double('material_didatico', 10, 2);
+            $table->integer('parcelas');
+
+            // $table->date('data_inicio');
+            // $table->date('data_fim');
+            // $table->enum('primeiro_dia_semana', ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo']);
+            // $table->enum('segundo_dia_semana', ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo'])->nullable();
+            // $table->time('hora_inico');
+            // $table->time('hora_fim');
+            // $table->double('valor_mensal', 10, 2);
+            // $table->string('data_pagamento');
+
             $table->timestamps();
             $table->foreign('aluno_id')->references('id')->on('alunos');
         });

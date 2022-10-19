@@ -55,6 +55,9 @@ Route::get('home/professor', [ProfessorController::class, 'home'])->name('profes
 Route::resource('professor', ProfessorController::class);
 Route::resource('colaborador', ColaboradorController::class);
 
+Route::get('matricular/contrato', [MatricularAlunoController::class,'verContrato'])->name('matricular.contrato');
+Route::post('matricular/contrato', [MatricularAlunoController::class,'verContrato'])->name('matricular.contrato');
+
 Route::resource('matricular', MatricularAlunoController::class);
 
 

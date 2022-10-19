@@ -7,7 +7,7 @@
 @section('conteudo')
 
     <div class="row">
-        <div class="col-md-11 container-fluid">
+        <div class="col-md-8 container-fluid">
             <div class="card card-purple">
                 <div class="card-header">
                     <h3 class="card-title">Matricular Aluno</h3>
@@ -29,11 +29,11 @@
                     </div>
                 @endif
 
-                @if (!empty($aluno->id))
-                    <form method="POST" action="{{ route('matricular.update', ['aluno' => $aluno->id]) }}">
+                @if (!empty($matricula->id))
+                    <form method="POST" action="{{ route('matricular.update', ['matricula' => $matricula->id]) }}">
                         @method('PUT')
                     @else
-                        <form method="POST" action="{{ route('matricular.store') }}">
+                        <form method="POST" action="{{ route('matricular.contrato') }}">
                 @endif
 
                 @csrf
@@ -50,8 +50,9 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        <div class="form-group col-sm-8">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12">
                             <label for="turma_id">Turma</label>
                             <select name="turma_id" class="form-control form-control-sm" id="turma_id">
                                 <option></option>
@@ -76,29 +77,37 @@
                         </div>
                     </div>
 
-
                     <div class="row">
-
-
-
-                        <div class="form-group col-sm-2">
-                            <label for="estado">Valor Mensal</label>
-                            <input type="text" name="valor_mensal" class="form-control form-control-sm" id="estado"
-                                value="{{ $aluno->endereco->estado ?? old('estado') }}" placeholder="Ex. São Paulo">
+                        <div class="form-group col-sm-4">
+                            <label for="valor_mensal">Valor Mensalidade</label>
+                            <input type="text" name="valor_mensal" class="form-control form-control-sm" id="valor_mensal"
+                                value="{{ $aluno->valor_mensal ?? old('valor_mensal') }}" placeholder="Ex. R$300,00">
                         </div>
-                        <div class="form-group col-sm-2">
-                            <label for="estado">Data Pagamento</label>
-                            <input type="number" name="data_pagamento" class="form-control form-control-sm" id="estado"
-                                value="{{ $aluno->endereco->estado ?? old('estado') }}" min="1" max="31"
-                                step="1" placeholder="Ex. 10">
+                        <div class="form-group col-sm-4">
+                            <label for="data_pagamento">Data Pagamento</label>
+                            <input type="number" name="data_pagamento" class="form-control form-control-sm"
+                                id="data_pagamento" value="{{ $aluno->data_pagamento ?? old('data_pagamento') }}"
+                                min="1" max="31" step="1" placeholder="Ex. 10">
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="material_didatico">Preço Material Didático</label>
+                            <input type="text" name="material_didatico" class="form-control form-control-sm"
+                                id="material_didatico" value="{{ $aluno->material_didatico ?? old('material_didatico') }}"
+                                placeholder="Ex. R$280,00">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="parcelas">N° de Parcelas</label>
+                            <input type="number" name="parcelas" class="form-control form-control-sm" id="parcelas"
+                                value="{{ $aluno->parcelas ?? old('parcelas') }}" min="1" max="12"
+                                step="1" placeholder="Ex. 6">
+                        </div>
+                    </div>
                 </div>
 
-
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-primary">Revisar e Matricular</button>
                 </div>
                 </form>
             </div>
