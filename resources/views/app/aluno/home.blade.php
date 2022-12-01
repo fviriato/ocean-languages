@@ -23,6 +23,9 @@
                     <a class="btn btn-app" href="{{ route('aluno.index') }}">
                         <i class="fas fa-restroom"></i>Alunos
                     </a>
+                    <a class="btn btn-app" href="{{ route('aluno.index') }}">
+                        <i class="fas fa-restroom"></i>Contratos
+                    </a>
                     <a class="btn btn-app">
                         <i class="fas fa-file-word"></i>Relatórios
                     </a>

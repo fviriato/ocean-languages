@@ -21,6 +21,9 @@ class CreateContratosTable extends Migration
             $table->date('data_pagamento');
             $table->double('material_didatico', 10, 2);
             $table->integer('parcelas');
+            $table->enum('status',['vigente','expirado']);
+            $table->enum('aula',['grupo','particular']);
+            $table->enum('tipo',['idioma','reforco']);
 
             // $table->date('data_inicio');
             // $table->date('data_fim');
@@ -30,7 +33,7 @@ class CreateContratosTable extends Migration
             // $table->time('hora_fim');
             // $table->double('valor_mensal', 10, 2);
             // $table->string('data_pagamento');
-
+            $table->unique('aluno_id');
             $table->timestamps();
             $table->foreign('aluno_id')->references('id')->on('alunos');
         });

@@ -18,13 +18,13 @@ class CreateAulaReforcosTable extends Migration
             $table->date('data_aula');
             $table->unsignedBigInteger('aluno_id');
             $table->unsignedBigInteger('colaborador_id');
-            $table->unsignedBigInteger('idioma_disciplina_id');
+            $table->unsignedBigInteger('disciplina_id');
             $table->enum('status', ['planejada', 'ministrada', 'cancelada']);
             $table->enum('presenca_aluno', ['presente', 'ausente']);
             $table->timestamps();
             $table->foreign('aluno_id')->references('id')->on('alunos');
             $table->foreign('colaborador_id')->references('id')->on('colaboradors');
-            $table->foreign('idioma_disciplina_id')->references('id')->on('idioma_disciplinas');
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
         });
     }
 
@@ -36,7 +36,7 @@ class CreateAulaReforcosTable extends Migration
     public function down()
     {
         Schema::table('aula_reforcos', function (Blueprint $table) {
-            $table->dropForeign('aula_reforcos_idioma_disciplina_id_foreign');
+            $table->dropForeign('aula_reforcos_disciplina_id_foreign');
             $table->dropForeign('aula_reforcos_colaborador_id_foreign');
             $table->dropForeign('aula_reforcos_aluno_id_foreign');
         });

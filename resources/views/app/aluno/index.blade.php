@@ -19,11 +19,10 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover table-sm">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                {{-- <th>ID ALUNO</th> --}}
+                                <th>Matrícula</th>
                                 <th>Aluno</th>
                                 <th>DT. Nasc</th>
                                 <th>E-mail</th>
@@ -32,16 +31,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($usuarios as $usuario)
-                                <tr>
-                                    <td>{{ $usuario->id }}</td>
-                                    {{-- <td>{{ $usuario->aluno->id }}</td> --}}
-                                    <td>{{ $usuario->name }}</td>
-                                    <td>{{ date('d/m/Y', strtotime($usuario->data_nascimento)) }}</td>
-                                    <td>{{ $usuario->email }}</td>
-                                    <td class="mask-phone">{{ $usuario->telefone }}</td>
+                            @foreach ($alunos as $aluno)
+                                <tr style="height:20px">
+                                    <td>{{ str_pad($aluno->id,4,0, STR_PAD_LEFT) }}</td>
+                                    <td>{{ $aluno->user->name }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($aluno->user->data_nascimento)) }}</td>
+                                    <td>{{ $aluno->user->email }}</td>
+                                    <td class="mask-phone">{{ $aluno->user->telefone }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('aluno.edit', ['aluno' => $usuario->id]) }}">
+                                        <a href="{{ route('aluno.edit', ['aluno' => $aluno->id]) }}">
                                             <span class="badge bg-primary">Editar</span>
                                         </a>
                                     </td>

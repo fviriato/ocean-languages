@@ -21,10 +21,10 @@ class CreateResponsavelsTable extends Migration
             $table->string('responsavel_email')->nullable();
             $table->string('responsavel_cpf', 11)->nullable();
             $table->string('responsavel_rg')->nullable();
-            $table->string('responsavel_telefone', 11)->nullable();
+            $table->string('responsavel_telefone', 20)->nullable();
             $table->unsignedBigInteger('responsavel_escolaridade_id')->nullable();
             $table->string('responsavel_profissao')->nullable();
-            $table->string('responsavel_cep',8)->nullable();
+            $table->string('responsavel_cep', 10)->nullable();
             $table->string('responsavel_logradouro')->nullable();
             $table->string('responsavel_numero')->nullable();
             $table->string('responsavel_complemento')->nullable();

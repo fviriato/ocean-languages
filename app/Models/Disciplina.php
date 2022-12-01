@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Menu;
 
-class Modulo extends Model
+class Disciplina extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome'];
+    protected $fillable = [
+        'nome',
+        'tipo'
+    ];
 
-    public function menu()
+    public function curso()
     {
-        return $this->hasOne(Menu::class);
+        $this->hasOne(Curso::class);
     }
 }

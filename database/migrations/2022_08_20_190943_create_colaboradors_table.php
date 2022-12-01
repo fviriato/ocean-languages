@@ -16,10 +16,11 @@ class CreateColaboradorsTable extends Migration
         Schema::create('colaboradors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('cargo');
+            $table->unsignedBigInteger('cargo_id');
             $table->string('registro');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('cargo_id')->references('id')->on('cargos');
         });
     }
 
@@ -32,6 +33,7 @@ class CreateColaboradorsTable extends Migration
     {
         Schema::table('colaboradors', function (Blueprint $table) {
             $table->dropForeign('colaboradors_user_id_foreign');
+            $table->dropForeign('colaboradors_cargo_id_foreign');
         });
         Schema::dropIfExists('colaboradors');
     }

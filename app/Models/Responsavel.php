@@ -27,4 +27,9 @@ class Responsavel extends Model
         'responsavel_municipio',
         'responsavel_estado'
     ];
+
+    public function aluno()
+    {
+        return $this->belongsTo(Aluno::class);
+    }
 }

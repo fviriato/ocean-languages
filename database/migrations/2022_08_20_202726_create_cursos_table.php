@@ -16,11 +16,11 @@ class CreateCursosTable extends Migration
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->unsignedBigInteger('idioma_disciplina_id');
+            $table->unsignedBigInteger('disciplina_id');
             $table->unsignedBigInteger('estagio_id');
             $table->unsignedBigInteger('nivel_id');
             $table->timestamps();
-            $table->foreign('idioma_disciplina_id')->references('id')->on('idioma_disciplinas');
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
             $table->foreign('estagio_id')->references('id')->on('estagios');
             $table->foreign('nivel_id')->references('id')->on('nivels');
         });
@@ -34,7 +34,7 @@ class CreateCursosTable extends Migration
     public function down()
     {
         Schema::table('cursos', function (Blueprint $table) {
-            $table->dropForeign('cursos_idioma_disciplina_id_foreign');
+            $table->dropForeign('cursos_disciplina_id_foreign');
             $table->dropForeign('cursos_estagio_id_foreign');
             $table->dropForeign('cursos_nivel_id_foreign');
         });

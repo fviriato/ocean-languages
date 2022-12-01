@@ -267,14 +267,14 @@ return [
             'icon' => 'fas fa-solid fa-tv',
         ],
         [
-            'text' => 'Administrativo',
-            'url'  => '/administrativo',
+            'text' => 'Aluno',
+            'url'  => '/home/aluno',
             'icon' => 'fas fa-fw fa-user',
         ],
 
         [
-            'text' => "Pedagógico",
-            'url'  => '/pedagogico',
+            'text' => "Professor",
+            'url'  => '/home/professor',
             'icon' => 'fas fa-address-book',
         ],
 

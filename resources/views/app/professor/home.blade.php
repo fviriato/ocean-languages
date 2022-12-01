@@ -17,7 +17,7 @@
                     <a class="btn btn-app" href="{{ route('professor.create') }}">
                         <i class="fas fa-file-signature"></i>Cadastrar
                     </a>
-                    <a class="btn btn-app" href="{{ route('idioma.index') }}">
+                    <a class="btn btn-app" href="">
                         <i class="fas fa-chalkboard"></i>Matérias
                     </a>
                     <a class="btn btn-app" href="{{ route('professor.index') }}">

@@ -16,12 +16,12 @@ class CreateAlunosTable extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('matricula');
-            $table->unsignedBigInteger('escola_id');
-            $table->unsignedBigInteger('escolaridade_id');
+            $table->unsignedBigInteger('escola_id')->nullable();
+            $table->unsignedBigInteger('escolaridade_id')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('escola_id')->references('id')->on('escolas');
+            $table->unique('user_id');
             $table->foreign('escolaridade_id')->references('id')->on('escolaridades');
         });
     }

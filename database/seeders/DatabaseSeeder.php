@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\EscolaridadeSeeder;
-use Database\Seeders\EscolaSeeder;
-use Database\Seeders\GeneroSeeder;
-use Database\Seeders\UserSeeder;
+// use Database\Seeders\EscolaridadeSeeder;
+// use Database\Seeders\EscolaSeeder;
+// use Database\Seeders\GeneroSeeder;
+// use Database\Seeders\UserSeeder;
 
 use Illuminate\Database\Seeder;
 
@@ -27,6 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EnderecoSeeder::class);
         $this->call(NivelSeeder::class);
         $this->call(EstagioSeeder::class);
-        $this->call(IdiomaDisciplinaSeeder::class);
+        $this->call(DisciplinaSeeder::class);
     }
 }

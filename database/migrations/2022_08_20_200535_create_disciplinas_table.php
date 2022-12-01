@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIdiomaDisciplinasTable extends Migration
+class CreateDisciplinasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIdiomaDisciplinasTable extends Migration
      */
     public function up()
     {
-        Schema::create('idioma_disciplinas', function (Blueprint $table) {
+        Schema::create('disciplinas', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->enum('tipo',['idioma','reforco']);
@@ -28,6 +28,6 @@ class CreateIdiomaDisciplinasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('idioma_disciplinas');
+        Schema::dropIfExists('disciplinas');
     }
 }

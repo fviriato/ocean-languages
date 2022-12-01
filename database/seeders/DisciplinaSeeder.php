@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\IdiomaDisciplina;
+use App\Models\Disciplina;
 use Illuminate\Database\Seeder;
 
-class IdiomaDisciplinaSeeder extends Seeder
+class DisciplinaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,43 +14,43 @@ class IdiomaDisciplinaSeeder extends Seeder
      */
     public function run()
     {
-        $idiomaDisciplina = new IdiomaDisciplina();
+        $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'Inglês';
         $idiomaDisciplina->tipo = 'idioma';
         $idiomaDisciplina->save();
 
-        $idiomaDisciplina = new IdiomaDisciplina();
+        $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'Espanhol';
         $idiomaDisciplina->tipo = 'idioma';
         $idiomaDisciplina->save();
 
-        $idiomaDisciplina = new IdiomaDisciplina();
+        $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'Francês';
         $idiomaDisciplina->tipo = 'idioma';
         $idiomaDisciplina->save();
 
-        $idiomaDisciplina = new IdiomaDisciplina();
+        $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'Alemão';
         $idiomaDisciplina->tipo = 'idioma';
         $idiomaDisciplina->save();
 
     
-        $idiomaDisciplina = new IdiomaDisciplina();
+        $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'Poruguês';
         $idiomaDisciplina->tipo = 'reforco';
         $idiomaDisciplina->save();
 
-        $idiomaDisciplina = new IdiomaDisciplina();
+        $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'Matemática';
         $idiomaDisciplina->tipo = 'reforco';
         $idiomaDisciplina->save();
 
-        $idiomaDisciplina = new IdiomaDisciplina();
+        $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'História';
         $idiomaDisciplina->tipo = 'reforco';
         $idiomaDisciplina->save();
 
-        $idiomaDisciplina = new IdiomaDisciplina();
+        $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'Geografia';
         $idiomaDisciplina->tipo = 'reforco';
         $idiomaDisciplina->save();

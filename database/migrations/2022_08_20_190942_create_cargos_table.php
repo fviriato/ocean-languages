@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePermissaosTable extends Migration
+class CreateCargosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreatePermissaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('permissaos', function (Blueprint $table) {
+        Schema::create('cargos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->double('salario', 10, 2);
+            $table->enum('forma_remuneracao', ['hora', 'mes']);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreatePermissaosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissaos');
+        Schema::dropIfExists('cargos');
     }
 }

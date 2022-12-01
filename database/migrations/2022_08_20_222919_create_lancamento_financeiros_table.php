@@ -15,14 +15,16 @@ class CreateLancamentoFinanceirosTable extends Migration
     {
         Schema::create('lancamento_financeiros', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tipo_lancamento_id');
+            $table->unsignedBigInteger('tipo_id');
             $table->string('descricao');
             $table->double('valor', 10, 2);
             $table->date('data_lancamento');
             $table->date('data_vencimento');
+            $table->date('data_quitacao');
             $table->enum('status', ['aberto', 'atrasado', 'quitado']);
+            $table->string('notivo');
             $table->timestamps();
-            $table->foreign('tipo_lancamento_id')->references('id')->on('tipo_lancamentos');
+            $table->foreign('tipo_id')->references('id')->on('tipos');
         });
     }
 
@@ -34,7 +36,7 @@ class CreateLancamentoFinanceirosTable extends Migration
     public function down()
     {
         Schema::table('lancamento_financeiros', function (Blueprint $table) {
-            $table->dropForeign('lancamento_financeiros_tipo_lancamento_id_foreign');
+            $table->dropForeign('lancamento_financeiros_tipo_id_foreign');
         });
         Schema::dropIfExists('lancamento_financeiros');
     }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Endereco;
+
 
 class Aluno extends Model
 {
@@ -20,5 +20,10 @@ class Aluno extends Model
     public function responsavel()
     {
         return $this->hasOne(Responsavel::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
