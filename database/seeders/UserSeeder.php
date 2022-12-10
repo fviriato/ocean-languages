@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Endereco;
 use App\Models\User;
+use Database\Factories\ResponsavelFactory;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -14,17 +16,31 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+       
         $user = new User();
-
-        $user->name = 'Wilma Cardoso';
-        $user->data_nascimento = '1970-01-01';
-        $user->genero_id = 2;
-        $user->email = 'wilma@oceanlanguages.com.br';
+        $user->name = 'Fernando Viriato';
+        $user->data_nascimento = '1980-03-06';
+        $user->genero_id = 1;
+        $user->email = 'fsviriato@gmail.com';
         $user->cpf = '11111111111';
         $user->rg = '11111111111';
-        $user->telefone = '11974131754';
+        $user->telefone = '11988334335';
         $user->password = bcrypt('123456');
-        // $user->tipo = 'master';
         $user->save();
-    }
+
+
+        $endereco = new Endereco();
+        $endereco->user_id = 1;
+        $endereco->cep = '07040000';
+        $endereco->logradouro = 'Rua Cônego Valadão';
+        $endereco->numero = '1162';
+        $endereco->complemento = '';
+        $endereco->bairro = 'Gopoúva';
+        $endereco->municipio = 'Guarulhos';
+        $endereco->estado = 'SP';
+        $endereco->save();
+
+        User::factory(10)->hasEndereco()->hasAluno()->create();
+
+        }
 }

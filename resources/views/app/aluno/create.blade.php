@@ -35,7 +35,9 @@
                     @else
                         <form method="POST" action="{{ route('aluno.store') }}">
                 @endif
+
                 @csrf
+
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-sm-6">
@@ -159,9 +161,10 @@
                             <input type="file" class="" name="foto" id="customFile">
                         </div>
                         <div class="form-group  col-sm-4">
-                            <input type="hidden" name="password" value="{{ bcrypt(str_replace(['.', '-'], '', ($user->data_nascimento ?? old('data_nascimento')))) }}">
+                            <input type="hidden" name="password"
+                                value="{{ bcrypt(str_replace(['.', '-'], '', $user->data_nascimento ?? old('data_nascimento'))) }}">
                         </div>
-                        
+
                     </div>
 
                     <hr>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Colaborador;
 use App\Models\Curso;
 use App\Models\Estagio;
-use App\Models\IdiomaDisciplina;
+use App\Models\Disciplina;
 use App\Models\Nivel;
 use App\Models\Turma;
 use App\Models\User;
@@ -34,10 +34,10 @@ class TurmaController extends Controller
     public function create()
     {
         return view('app.turma.create', [
-            'idiomas'        => IdiomaDisciplina::where('tipo', 'idioma')->orderBy('nome')->get(),
+            'idiomas'        => Disciplina::where('tipo', 'idioma')->orderBy('nome')->get(),
             'estagios'       => Estagio::all(),
             'niveis'         => Nivel::all(),
-            'professores'    => User::where('tipo', 'professor')->get()
+            'professores'    => ''
         ]);
     }
 
@@ -124,7 +124,7 @@ class TurmaController extends Controller
     {
     
         return view('app.turma.create', [
-            'idiomas'        => IdiomaDisciplina::where('tipo', 'idioma')->orderBy('nome')->get(),
+            'idiomas'        => Disciplina::where('tipo', 'idioma')->orderBy('nome')->get(),
             'estagios'       => Estagio::all(),
             'niveis'         => Nivel::all(),
             'professores'    => User::where('tipo', 'professor')->get(),

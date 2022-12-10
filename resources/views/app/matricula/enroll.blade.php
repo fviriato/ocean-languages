@@ -43,10 +43,10 @@
                             <label for="user_id">Aluno</label>
                             <select name="user_id" class="form-control form-control-sm" id="user_id">
                                 <option></option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}"
-                                        {{ $user->user_id ?? old('user_id') == $user->id ? 'selected' : '' }}>
-                                        {{ $user->name }}</option>
+                                @foreach ($alunos as $aluno)
+                                    <option value="{{ $aluno->id }}"
+                                        {{ $aluno->user_id ?? old('user_id') == $aluno->id ? 'selected' : '' }}>
+                                        {{ $aluno->user->name }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -277,6 +277,11 @@ return [
             'url'  => '/home/professor',
             'icon' => 'fas fa-address-book',
         ],
+        [
+            'text' => "Turmas",
+            'url'  => '/home/turma',
+            'icon' => 'fas fa-address-book',
+        ],
 
         [
             'text' => 'Financeiro',

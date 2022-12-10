@@ -1,6 +1,6 @@
 @extends('home')
 
-@section('titulo', 'Turmas')
+@section('titulo', 'Alunos')
 
 @section('content_header', 'Guarulhos, ' . date('F jS Y'))
 
@@ -14,7 +14,6 @@
                     <div class="card-tools">
                         <a class="btn-xs bg-indigo" href="{{ route('aluno.home') }}">Voltar</a> &nbsp;&nbsp;&nbsp;
                         <a class="btn-xs bg-indigo" href="{{ route('aluno.create') }}">Cadastrar Aluno</a> &nbsp;&nbsp;&nbsp;
-                        <a class="btn-xs bg-indigo" href="{{ route('aluno.create') }}">Matricular Aluno</a>
                     </div>
                 </div>
 
@@ -40,7 +39,7 @@
                                     <td class="mask-phone">{{ $aluno->user->telefone }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('aluno.edit', ['aluno' => $aluno->id]) }}">
-                                            <span class="badge bg-primary">Editar</span>
+                                            <span class="badge bg-primary">Editar Cadastro</span>
                                         </a>
                                     </td>
                                 </tr>
@@ -51,11 +50,7 @@
 
                 <div class="card-footer clearfix">
                     <ul class="pagination pagination-sm m-0 float-right">
-                        <li class="page-item"><a class="page-link" href="#">«</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                        {{ $alunos->links('pagination::bootstrap-4') }}
                     </ul>
                 </div>
             </div>

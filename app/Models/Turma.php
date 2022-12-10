@@ -10,9 +10,9 @@ class Turma extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nome',
         'curso_id',
         'colaborador_id',
+        'nome',
         'data_inicio',
         'data_fim',
         'hora_inicio',

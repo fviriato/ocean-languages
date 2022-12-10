@@ -14,6 +14,7 @@ use App\Models\Escolaridade;
 use App\Models\Genero;
 use App\Models\Responsavel;
 use App\Models\User;
+use Carbon\Carbon;
 use Error;
 use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class AlunoController extends Controller
     public function index()
     {
         return view('app.aluno.index', [
-            'alunos' => Aluno::all()
+            'alunos' => Aluno::paginate(10)
         ]);
     }
 
@@ -49,7 +50,8 @@ class AlunoController extends Controller
      */
     public function create()
     {
-        return view('app.aluno.create', [
+
+            return view('app.aluno.create', [
             'generos' => Genero::all(),
             'escolas' => Escola::all(),
             'escolaridades' => Escolaridade::all()
@@ -146,6 +148,7 @@ class AlunoController extends Controller
         $idade = date('Y') - date('Y', strtotime($request->data_nascimento));
 
         if ($idade < 18) {
+            // dd($request->all());
             $usuario->aluno->responsavel->update($request->all());
         }
 

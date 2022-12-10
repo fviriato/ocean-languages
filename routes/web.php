@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Aluno\AlunoController;
+use App\Http\Controllers\Aluno\MatricularAlunoController;
 use App\Http\Controllers\Professor\ProfessorController;
 
 
@@ -20,7 +21,7 @@ use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\EscolaController;
 use App\Http\Controllers\EscolaridadeController;
 
-use App\Http\Controllers\MatricularAlunoController;
+
 use App\Http\Controllers\PermissaoAcessoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -59,15 +60,14 @@ Route::resource('aluno', AlunoController::class);
 
 
 
-
-
-
 Route::get('/home/professor', [ProfessorController::class, 'home'])->name('professor.home');
 Route::resource('professor', ProfessorController::class);
 Route::resource('colaborador', ColaboradorController::class);
 
 Route::get('matricular/contrato', [MatricularAlunoController::class,'verContrato'])->name('matricular.contrato');
 Route::post('matricular/contrato', [MatricularAlunoController::class,'verContrato'])->name('matricular.contrato');
+
+Route::resource('/home/turma', TurmaController::class);
 
 Route::resource('matricular', MatricularAlunoController::class);
 
@@ -89,7 +89,7 @@ Route::resource('curso', CursoController::class);
 // Route::resource('professor', ProfessorController::class);
 // Route::resource('sessao', SessaoController::class);
 
-// Route::resource('turma', TurmaController::class);
+
 //Route::get('aula/idioma', [AulaIdiomaController::class, 'index'])->name('aula.idioma.index');
 // Route::resource('idioma', AulaIdiomaController::class);
 // Route::resource('permissoes', PermissaoAcessoController::class);
