@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cargo;
 use App\Models\Colaborador;
 use App\Models\Genero;
 use App\Models\User;
@@ -18,7 +19,7 @@ class ColaboradorController extends Controller
     public function index()
     {
         return view('app.colaborador.index', [
-            'users' => User::where('tipo', 'colaborador')->orderBy('name')->get()
+            'colaboradores' => Colaborador::paginate(10)
         ]);
     }
 
@@ -30,7 +31,8 @@ class ColaboradorController extends Controller
     public function create()
     {
         return view('app.colaborador.create', [
-            'generos' => Genero::all()
+            'generos'        => Genero::all(),
+            'cargos'  => Cargo::orderBy('nome','asc')->get()
         ]);
     }
 

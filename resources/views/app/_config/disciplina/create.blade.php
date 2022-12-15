@@ -33,7 +33,7 @@
                 @endif
 
                 @if (!empty($disciplina->id))
-                    <form method="POST" action="{{ route('disciplina.update', ['disciplina' => $disciplina ?? ''->id]) }}">
+                    <form method="POST" action="{{ route('disciplina.update', ['disciplina' => $disciplina ?? ('')->id]) }}">
                         @method('PUT')
                     @else
                         <form method="POST" action="{{ route('disciplina.store') }}">
@@ -51,9 +51,9 @@
                             <label for="tipo">Tipo</label>
                             <select name="tipo" class="form-control form-control-sm" id="tipo">
                                 <option></option>
-                                <option {{ isset($disciplina->tipo) == 'idioma' ? 'selected' : '' }} value="idioma">
-                                    Idioma</option>
-                                <option {{ isset($disciplina->tipo) == 'reforco' ? 'selected' : '' }} value="reforco">
+                                <option {{ $disciplina->tipo == 'idioma' ? 'selected' : '' }} value="idioma">Idioma
+                                </option>
+                                <option {{ $disciplina->tipo == 'reforco' ? 'selected' : '' }} value="reforco">
                                     Disciplina de Reforço</option>
                             </select>
                         </div>

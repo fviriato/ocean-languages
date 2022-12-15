@@ -33,15 +33,15 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($users as $user)
+                            @foreach ($colaboradores as $colaborador)
                                 <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ date('d/m/Y', strtotime($user->data_nascimento)) }}</td>
-                                    <td>{{ $user->colaborador->cargo }}</td>
-                                    <td>{{ $user->telefone }}</td>
-                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $colaborador->name }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($colaborador->data_nascimento)) }}</td>
+                                    <td>{{ $colaborador->colaborador->cargo }}</td>
+                                    <td>{{ $colaborador->telefone }}</td>
+                                    <td>{{ $colaborador->email }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('colaborador.edit', ['colaborador' => $user->colaborador->id]) }}">
+                                        <a href="{{ route('colaborador.edit', ['colaborador' => $colaborador->colaborador->id]) }}">
                                             <span class="badge bg-primary">Editar</span>
                                         </a>
                                     </td>
@@ -54,13 +54,10 @@
 
                 <div class="card-footer clearfix">
                     <ul class="pagination pagination-sm m-0 float-right">
-                        <li class="page-item"><a class="page-link" href="#">«</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                        {{ $colaboradores->links('pagination::bootstrap-4') }}
                     </ul>
                 </div>
+
             </div>
         </div>
     </div>

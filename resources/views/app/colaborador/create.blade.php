@@ -88,11 +88,24 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label for="cargo">Cargo</label>
-                            <input type="text" name="cargo" class="form-control form-control-sm" id="cargo"
-                                value="{{ $colaborador->colaborador->cargo ?? old('cargo') }}" placeholder="Cargo">
+                        <div class="form-group col-sm-5">
+                            <label for="cargo_id">Cargo</label>
+                            <select name="cargo_id" class="form-control form-control-sm" id="cargo_id">
+                                <option></option>
+                                @foreach ($cargos as $cargo)
+                                    <option value="{{ $cargo->id }}"
+                                        {{ ($cargo->cargo_id ?? old('cargo_id')) == $cargo->id ? 'selected' : '' }}>
+                                        {{ $cargo->nome }}</option>
+                                @endforeach
+                            </select>
                         </div>
+
+                        <div class="form-group col-sm-2">
+                            <label for="salario">Salário</label>
+                            <input type="text" name="salario" class="form-control form-control-sm" id="salario"
+                                value="{{ $colaborador->salario ?? old('salario') }}">
+                        </div>
+
                     </div>
 
                     <div class="row">
@@ -136,7 +149,8 @@
                         <div class="form-group col-sm-2">
                             <label for="estado">Estado</label>
                             <input type="text" name="estado" class="form-control form-control-sm" id="estado"
-                                value="{{ $colaborador->endereco->estado ?? old('estado') }}" placeholder="Ex. São Paulo">
+                                value="{{ $colaborador->endereco->estado ?? old('estado') }}"
+                                placeholder="Ex. São Paulo">
                         </div>
                     </div>
                 </div>

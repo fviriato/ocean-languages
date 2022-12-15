@@ -30,9 +30,8 @@
                             @foreach ($disciplinas as $disciplina)
                                 <tr>
                                     <td>{{ $disciplina->nome }}</td>
-                                    <td>{{ ($disciplina->tipo == 'idioma' ? 'Curso de Idioma' : 'Reforço Escolar') }}</td>
-                                    <td> <a
-                                            href="{{ route('disciplina.edit', ['disciplina' => $disciplina->id]) }}"><span
+                                    <td>{{ $disciplina->tipo == 'idioma' ? 'Curso de Idioma' : 'Reforço Escolar' }}</td>
+                                    <td> <a href="{{ route('disciplina.edit', ['disciplina' => $disciplina->id]) }}"><span
                                                 class="badge bg-success">Editar</span></a> </td>
                                 </tr>
                             @endforeach

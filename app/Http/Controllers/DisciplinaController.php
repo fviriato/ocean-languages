@@ -72,7 +72,7 @@ class DisciplinaController extends Controller
      */
     public function edit($id)
     {
-        return redirect()->route('disciplina.create',[
+        return view('app._config.disciplina.create',[
             'disciplina' => Disciplina::find($id)
         ]);
     }
@@ -84,9 +84,24 @@ class DisciplinaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Disciplina $disciplina)
     {
-        //
+    
+        $rule = [
+            'nome'    => 'required',
+            'tipo'    => 'required',
+        ];
+        $feedback = [
+            'nome.required'  => 'Informe o  Nome da Disciplina',
+            'tipo.required'  => 'Informar o Tipo'
+        ];
+
+        $request->validate($rule, $feedback);
+
+        $disciplina->update($request->all());
+
+        return redirect()->route('disciplina.index');
+
     }
 
     /**
