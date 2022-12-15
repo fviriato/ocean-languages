@@ -18,6 +18,8 @@ class CreateColaboradorsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('cargo_id');
             $table->string('registro');
+            $table->double('salario', 10, 2);
+            $table->enum('forma_remuneracao', ['hora', 'mes']);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('cargo_id')->references('id')->on('cargos');

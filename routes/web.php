@@ -5,9 +5,7 @@ use App\Http\Controllers\Aluno\AlunoController;
 use App\Http\Controllers\Aluno\MatricularAlunoController;
 use App\Http\Controllers\Professor\ProfessorController;
 
-
-
-use App\Http\Controllers\MenuController;
+use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\EstagioController;
 use App\Http\Controllers\GeneroController;
@@ -15,7 +13,7 @@ use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\TurmaController;
-use App\Http\Controllers\AulaIdiomaController;
+
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\EscolaController;
@@ -58,8 +56,6 @@ Route::get('/home/aluno', [AlunoController::class, 'home'])->name('aluno.home');
 Route::resource('aluno', AlunoController::class);
 
 
-
-
 Route::get('/home/professor', [ProfessorController::class, 'home'])->name('professor.home');
 Route::resource('professor', ProfessorController::class);
 Route::resource('colaborador', ColaboradorController::class);
@@ -73,11 +69,11 @@ Route::resource('matricular', MatricularAlunoController::class);
 
 
 //CONFIGURAÇÕES DO SISTEMA
-Route::resource('config', ConfigController::class);
+Route::resource('/config', ConfigController::class);
 Route::resource('genero', GeneroController::class);
 Route::resource('nivel', NivelController::class);
 Route::resource('estagio', EstagioController::class);
-// Route::resource('disciplina', DisciplinaController::class);
+Route::resource('disciplina', DisciplinaController::class);
 Route::resource('escola', EscolaController::class);
 Route::resource('escolaridade', EscolaridadeController::class);
 Route::resource('curso', CursoController::class);

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Escola;
 use Illuminate\Http\Request;
+use App\Models\Disciplina;
 
-class EscolaController extends Controller
+class DisciplinaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class EscolaController extends Controller
      */
     public function index()
     {
-        return view('app._config.escola.index', [
-            'escolas' => Escola::paginate(7)
+        return view('app._config.disciplina.index',[
+            'disciplinas' => Disciplina::orderBy('tipo','asc')->get()
         ]);
     }
 
@@ -26,7 +26,7 @@ class EscolaController extends Controller
      */
     public function create()
     {
-        return view('app._config.escola.create');
+        return view('app._config.disciplina.create');
     }
 
     /**
@@ -37,19 +37,20 @@ class EscolaController extends Controller
      */
     public function store(Request $request)
     {
-
-        $rule = ['nome' => 'required|unique:escolas'];
-
+        $rule = [
+            'nome'    => 'required',
+            'tipo'    => 'required',
+        ];
         $feedback = [
-            'nome.required' => 'Informe o nome da Escola ou Colégio',
-            'nome.unique' => 'A Escola informada já está cadastrada'
+            'nome.required'  => 'Informe o  Nome da Disciplina',
+            'tipo.required'  => 'Informar o Tipo'
         ];
 
         $request->validate($rule, $feedback);
 
-        Escola::create($request->all());
+        Disciplina::create($request->all());
 
-        return redirect()->route('escola.index');
+        return redirect()->route('disciplina.index');
     }
 
     /**
@@ -69,11 +70,10 @@ class EscolaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Escola $escola)
+    public function edit($id)
     {
-
-        return view('app._config.escola.create', [
-            'escola' => Escola::find($escola->id)
+        return redirect()->route('disciplina.create',[
+            'disciplina' => Disciplina::find($id)
         ]);
     }
 
@@ -84,24 +84,9 @@ class EscolaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Escola $escola)
+    public function update(Request $request, $id)
     {
-        
-        $id = $escola->id;
-        $rule = [
-            'nome' => "required|unique:escolas,nome,{$id},id"
-        ];
-
-        $feedback = [
-            'nome.required' => 'Informe o nome da Escola ou Colégio',
-            'nome.unique' => 'A Escola informada já está cadastrada'
-        ];
-
-        $request->validate($rule, $feedback);
-
-        $escola->update($request->all());
-
-        return redirect()->route('escola.index');
+        //
     }
 
     /**

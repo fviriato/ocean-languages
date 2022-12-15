@@ -13,12 +13,12 @@
                 <div class="card-header">
                     <h3 class="card-title">Idiomas e Disciplinas</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('idiomaDisciplina.create') }}">Cadastrar Idioma ou Disciplina</a>
+                        <a class="btn-xs bg-indigo" href="{{ route('disciplina.create') }}">Cadastrar Idioma ou Disciplina</a>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover table-sm">
                         <thead>
                             <tr>
                                 <th>Idioma / Disciplina</th>
@@ -27,12 +27,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($idiomaDisciplinas as $idiomaDisciplina)
+                            @foreach ($disciplinas as $disciplina)
                                 <tr>
-                                    <td>{{ $idiomaDisciplina->nome }}</td>
-                                    <td>{{ ($idiomaDisciplina->tipo == 'idioma' ? 'Curso de Idioma' : 'Reforço Escolar') }}</td>
+                                    <td>{{ $disciplina->nome }}</td>
+                                    <td>{{ ($disciplina->tipo == 'idioma' ? 'Curso de Idioma' : 'Reforço Escolar') }}</td>
                                     <td> <a
-                                            href="{{ route('idiomaDisciplina.edit', ['idiomaDisciplina' => $idiomaDisciplina->id]) }}"><span
+                                            href="{{ route('disciplina.edit', ['disciplina' => $disciplina->id]) }}"><span
                                                 class="badge bg-success">Editar</span></a> </td>
                                 </tr>
                             @endforeach

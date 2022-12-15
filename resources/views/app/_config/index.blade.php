@@ -30,15 +30,12 @@
                     <a class="btn btn-app" href="{{ route('estagio.index') }}">
                         <i class="fas fa-signal"></i>Estágio de Ensino
                     </a>
-                    <a class="btn btn-app" href="{{ route('idiomaDisciplina.index') }}">
+                    <a class="btn btn-app" href="{{ route('disciplina.index') }}">
                         <i class="fas fa-language"></i>Idioma / Disciplina
                     </a>
-                    <a class="btn btn-app" href="{{ route('curso.index') }}">
+                    {{-- <a class="btn btn-app" href="{{ route('curso.index') }}">
                         <i class="fas fa-book-open"></i></i>Cursos
-                    </a>
-                    <a class="btn btn-app" href="{{ route('turma.index') }}">
-                        <i class="fas fa-book-open"></i></i>Turmas de Alunos
-                    </a>
+                    </a> --}}
 
                     <br>
                     <br>

@@ -16,8 +16,6 @@ class CreateCargosTable extends Migration
         Schema::create('cargos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->double('salario', 10, 2);
-            $table->enum('forma_remuneracao', ['hora', 'mes']);
             $table->timestamps();
         });
     }

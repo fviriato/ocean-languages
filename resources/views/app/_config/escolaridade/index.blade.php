@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover table-sm">
                         <thead>
                             <tr>
                                 <th style="width: 10px">ID</th>

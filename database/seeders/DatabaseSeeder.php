@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EstagioSeeder::class);
         $this->call(DisciplinaSeeder::class);
         $this->call(ResponsavelSeeder::class);
+        $this->call(CargoSeeder::class);
 
     }
 }

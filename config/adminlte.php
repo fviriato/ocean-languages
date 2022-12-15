@@ -294,6 +294,13 @@ return [
             'url'  => '/gerencial',
             'icon' => 'fas fa-fw fa-lock',
         ],
+
+        ['header' => 'settings'],
+        [
+            'text' => "Configurações",
+            'url'  => '/config',
+            'icon' => 'fas fa-wrench',
+        ],
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

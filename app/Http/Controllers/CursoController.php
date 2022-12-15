@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curso;
 use App\Models\Estagio;
-use App\Models\IdiomaDisciplina;
+use App\Models\Disciplina;
 use App\Models\Nivel;
 use Illuminate\Http\Request;
 
@@ -31,7 +31,7 @@ class CursoController extends Controller
     public function create()
     {
         return view('app.curso.create', [
-            'idiomaDisciplinas' => IdiomaDisciplina::where('tipo', 'idioma')->orderBy('nome')->get() ?? '',
+            'idiomaDisciplinas' => Disciplina::where('tipo', 'idioma')->orderBy('nome')->get() ?? '',
             'estagios'          => Estagio::orderBy('nome')->get(),
             'niveis'            => Nivel::orderBy('nome')->get()
         ]);
@@ -94,7 +94,7 @@ class CursoController extends Controller
 
 
         return view('app.curso.create', [
-            'idiomaDisciplinas' => IdiomaDisciplina::where('tipo', 'idioma')->orderBy('nome')->get() ?? '',
+            'idiomaDisciplinas' => Disciplina::where('tipo', 'idioma')->orderBy('nome')->get() ?? '',
             'estagios'          => Estagio::all(),
             'niveis'            => Nivel::all(),
             'curso'             =>  $curso

@@ -7,7 +7,7 @@
 @section('conteudo')
 
     <div class="row">
-        <div class="col-md-6 container-fluid">
+        <div class="col-md-8 container-fluid">
 
             <div class="card card-purple">
                 <div class="card-header">
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover table-sm">
                         <thead>
                             <tr>
                                 <th style="width: 10px">ID</th>
@@ -38,7 +38,11 @@
                         </tbody>
                     </table>
                 </div>
-
+                <div class="card-footer clearfix">
+                    <ul class="pagination pagination-sm m-0 float-right">
+                        {{ $escolas->links('pagination::bootstrap-4') }}
+                    </ul>
+                </div>
             </div>
 
         </div>
