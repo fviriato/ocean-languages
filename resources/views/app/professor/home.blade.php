@@ -14,7 +14,7 @@
                     <h3 class="card-title">MENU DE PROFESSORES</h3>
                 </div>
                 <div class="card-body">
-                    <a class="btn btn-app" href="{{ route('professor.create') }}">
+                    <a class="btn btn-app" href="{{ route('colaborador.create') }}">
                         <i class="fas fa-file-signature"></i>Cadastrar
                     </a>
                     <a class="btn btn-app" href="">

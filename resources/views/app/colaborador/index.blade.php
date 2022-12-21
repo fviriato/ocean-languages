@@ -12,15 +12,15 @@
                 <div class="card-header">
                     <h3 class="card-title">Relação de Colaboradores</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('colaborador.index') }}">Voltar</a> &nbsp;&nbsp;&nbsp;
+                        <a class="btn-xs bg-indigo" href="{{ route('config.index') }}">Voltar</a> &nbsp;&nbsp;&nbsp;
                         <a class="btn-xs bg-indigo" href="{{ route('colaborador.create') }}">Cadastrar Colaborador</a>
                         &nbsp;&nbsp;&nbsp;
-                        <a class="btn-xs bg-indigo" href="{{ route('colaborador.create') }}">Atribuir Matéria</a>
+                        {{-- <a class="btn-xs bg-indigo" href="{{ route('colaborador.create') }}">Atribuir Matéria</a> --}}
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover table-sm">
                         <thead>
                             <tr>
                                 <th>Colaborador</th>
@@ -35,13 +35,13 @@
 
                             @foreach ($colaboradores as $colaborador)
                                 <tr>
-                                    <td>{{ $colaborador->name }}</td>
-                                    <td>{{ date('d/m/Y', strtotime($colaborador->data_nascimento)) }}</td>
-                                    <td>{{ $colaborador->colaborador->cargo }}</td>
-                                    <td>{{ $colaborador->telefone }}</td>
-                                    <td>{{ $colaborador->email }}</td>
+                                    <td>{{ $colaborador->user->name }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($colaborador->user->data_nascimento)) }}</td>
+                                    <td>{{ $colaborador->cargo->nome }}</td>
+                                    <td>{{ $colaborador->user->telefone }}</td>
+                                    <td>{{ $colaborador->user->email }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('colaborador.edit', ['colaborador' => $colaborador->colaborador->id]) }}">
+                                        <a href="{{ route('colaborador.edit', ['colaborador' => $colaborador->id]) }}">
                                             <span class="badge bg-primary">Editar</span>
                                         </a>
                                     </td>

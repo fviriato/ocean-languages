@@ -1,6 +1,6 @@
 @extends('home')
 
-@section('titulo', 'Turmas')
+@section('titulo', 'Professores')
 
 @section('content_header', 'Guarulhos, ' . date('F jS Y'))
 
@@ -31,14 +31,14 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($professores as $professor)
+                            @foreach ($colaboradores as $colaborador)
                                 <tr>
-                                    <td>{{ $professor->name }}</td>
-                                    <td>{{ date('d/m/Y', strtotime($professor->data_nascimento)) }}</td>
-                                    <td>{{ $professor->telefone }}</td>
-                                    <td>{{ $professor->email }}</td>
+                                    <td>{{ $colaborador->name }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($colaborador->data_nascimento)) }}</td>
+                                    <td>{{ $colaborador->telefone }}</td>
+                                    <td>{{ $colaborador->email }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('professor.edit', ['professor' => $professor->id]) }}">
+                                        <a href="{{ route('professor.edit', ['professor' => $colaborador->id]) }}">
                                             <span class="badge bg-primary">Editar</span>
                                         </a>
                                     </td>

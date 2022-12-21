@@ -32,7 +32,7 @@ class ColaboradorController extends Controller
     {
         return view('app.colaborador.create', [
             'generos'        => Genero::all(),
-            'cargos'  => Cargo::orderBy('nome','asc')->get()
+            'cargos'  => Cargo::orderBy('nome', 'asc')->get()
         ]);
     }
 
@@ -44,12 +44,10 @@ class ColaboradorController extends Controller
      */
     public function store(Request $request)
     {
-        $request['cpf']                  = str_replace(['.', '-'], '', $request->input('cpf'));
-        $request['rg']                   = str_replace(['.', '-'], '', $request->input('rg'));
+
         $request['cep']                  = str_replace(['.', '-'], '', $request->input('cep'));
         $request['telefone']             = str_replace(['(', ')', '.', '-', ' '], '', $request->input('telefone'));
         $request['password']             = bcrypt(str_replace(['.', '-'], '', $request->input('data_nascimento')));
-        $request['tipo'] = 'colaborador';
         $request['registro'] = '123A';
 
         $rule = [
@@ -60,6 +58,7 @@ class ColaboradorController extends Controller
             'cpf'                          => 'min:11|max:11|unique:users',
             'rg'                           => 'nullable',
             'telefone'                     => 'nullable',
+            'cargo_id'                     => 'nullable|exists:cargos,id',
             'cep'                          => 'required',
             'logradouro'                   => 'required',
             'numero'                       => 'required',
@@ -75,20 +74,21 @@ class ColaboradorController extends Controller
             'cpf.min'      => 'O campo CPF deve conter 11 caractéres',
             'cpf.max'      => 'O campo CPF deve conter 11 caractéres',
             'cpf.unique'   => 'O CPF informado já está cadastrado',
+            'cargo_id.exists' => 'O cargo informado não está cadastrado'
 
         ];
 
         $request->validate($rule, $feedback);
 
+        // dd($request->all());
 
         try {
 
             DB::beginTransaction();
             $usuario = User::create($request->all());
             $usuario->endereco()->create($request->all());
-
-            $aluno = $usuario->colaborador()->create($request->all());
-            $request['aluno_id'] = $aluno->id;
+            $usuario->colaborador()->create($request->all());
+            // $request['aluno_id'] = $aluno->id;
 
             DB::commit();
         } catch (\Exception $exception) {
@@ -121,12 +121,14 @@ class ColaboradorController extends Controller
     public function edit($id)
     {
         $colaborador = Colaborador::find($id);
-  
+
         $user = User::find($colaborador->user_id);
 
         return view('app.colaborador.create', [
-            'generos' => Genero::all(),
-            'colaborador' => $user
+            'generos'     => Genero::all(),
+            'cargos'      => Cargo::orderBy('nome', 'asc')->get(),
+            'user'        => $user,
+            'colaborador' =>$colaborador
         ]);
     }
 
@@ -137,29 +139,26 @@ class ColaboradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Colaborador $colaborador)
     {
 
-        $user = User::find($id);
+        $user = User::find($colaborador->user_id);
 
-        $colaborador = Colaborador::where('user_id', $user->id)->get();
-
-        $request['cpf']                  = str_replace(['.', '-'], '', $request->input('cpf'));
-        $request['rg']                   = str_replace(['.', '-'], '', $request->input('rg'));
+       
         $request['cep']                  = str_replace(['.', '-'], '', $request->input('cep'));
         $request['telefone']             = str_replace(['(', ')', '.', '-', ' '], '', $request->input('telefone'));
         $request['password']             = bcrypt(str_replace(['.', '-'], '', $request->input('data_nascimento')));
-        $request['tipo'] = 'colaborador';
         $request['registro'] = '123A';
 
         $rule = [
             'name'                         => 'required|min:3',
             'data_nascimento'              => 'required',
             'genero_id'                    => 'required|exists:generos,id',
-            'email'                        => "nullable|unique:users,email,{$user->id},id",
+            'email'                        => "required|email|unique:users,email,{$user->id},id",
             'cpf'                          => "nullable|min:11|max:11|unique:users,cpf,{$user->id},id",
             'rg'                           => 'nullable',
             'telefone'                     => 'nullable',
+            'cargo_id'                     => 'nullable|exists:cargos,id',
             'cep'                          => 'required',
             'logradouro'                   => 'required',
             'numero'                       => 'required',
@@ -175,21 +174,22 @@ class ColaboradorController extends Controller
             'cpf.min'      => 'O campo CPF deve conter 11 caractéres',
             'cpf.max'      => 'O campo CPF deve conter 11 caractéres',
             'cpf.unique'   => 'O CPF informado já está cadastrado',
+            'cargo_id.exists' => 'O cargo informado não está cadastrado'
 
         ];
 
         $request->validate($rule, $feedback);
 
+        // dd($request->all());
 
         try {
 
             DB::beginTransaction();
             $user->update($request->all());
-
-            // dd($user);
-
             $user->endereco->update($request->all());
             $user->colaborador->update($request->all());
+            // $request['aluno_id'] = $aluno->id;
+
             DB::commit();
         } catch (\Exception $exception) {
 
@@ -199,6 +199,10 @@ class ColaboradorController extends Controller
         }
 
         return redirect()->route('colaborador.index');
+
+
+
+
     }
 
     /**

@@ -27,7 +27,13 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        return view('app.professor.index');
+        // return view('app.professor.index',[
+        //     ''
+        // ]);
+
+        return view('app.colaborador.index', [
+            'colaboradores' => Colaborador::where('forma_remuneracao','like', '%hora%')->get()
+        ]);
     }
 
     /**
@@ -58,7 +64,7 @@ class ProfessorController extends Controller
      * @param  \App\Models\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function show(Professor $professor)
+    public function show( $professor)
     {
         //
     }
@@ -93,7 +99,7 @@ class ProfessorController extends Controller
      * @param  \App\Models\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Professor $professor)
+    public function destroy($professor)
     {
         //
     }

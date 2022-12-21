@@ -13,11 +13,18 @@ class Colaborador extends Model
     protected $fillable = [
         'user_id',
         'registro',
-        'cargo',
+        'cargo_id',
+        'salario',
+        'forma_remuneracao'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function cargo()
+    {
+        return $this->belongsTo(Cargo::class);
     }
 }
