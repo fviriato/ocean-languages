@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
         $user->rg = '11111111111';
         $user->telefone = '11988334335';
         $user->password = bcrypt('123456');
+        $user->tipo = 'master';
         $user->save();
 
 
@@ -40,7 +41,7 @@ class UserSeeder extends Seeder
         $endereco->estado = 'SP';
         $endereco->save();
 
-        User::factory(10)->hasEndereco()->hasAluno()->create();
+        // User::factory(100)->hasEndereco()->create();
 
         }
 }

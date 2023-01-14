@@ -28,7 +28,8 @@ class User extends Authenticatable
         'rg',
         'telefone',
         'password',
-        'tipo'
+        'tipo',
+        'foto'
     ];
 
     /**
@@ -55,13 +56,7 @@ class User extends Authenticatable
         return $this->hasOne(Endereco::class);
     }
 
-    public function aluno()
-    {
+    public function aluno(){
         return $this->hasOne(Aluno::class);
-    }
-
-    public function colaborador()
-    {
-        return $this->hasOne(Colaborador::class);
     }
 }

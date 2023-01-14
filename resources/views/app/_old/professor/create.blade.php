@@ -72,13 +72,13 @@
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="cpf">CPF</label>
-                            <input type="text" name="cpf" class="form-control form-control-sm cpf" id="cpf"
-                                value="{{ $professor->cpf ?? old('cpf') }}" placeholder="CPF do Professor">
+                            <input type="text" name="cpf" class="form-control form-control-sm" id="cpf"
+                                value="{{ $professor->cpf ?? old('cpf') }}" placeholder="CPF do Professor" maxlength="11">
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="rg">RG</label>
-                            <input type="text" name="rg" class="form-control form-control-sm rg" id="rg"
-                                value="{{ $professor->rg ?? old('rg') }}" placeholder="RG do Professor">
+                            <input type="text" name="rg" class="form-control form-control-sm" id="rg"
+                                value="{{ $professor->rg ?? old('rg') }}" placeholder="RG do Professor" maxlength="11">
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="telefone">Telefone</label>
@@ -130,6 +130,15 @@
                             <input type="text" name="estado" class="form-control form-control-sm" id="estado"
                                 value="{{ $professor->endereco->estado ?? old('estado') }}" placeholder="Ex. São Paulo">
                         </div>
+                    </div>
+
+
+                    <div class="form-group  col-sm-4">
+                        <input type="hidden" name="password"
+                            value="{{ bcrypt(str_replace(['.', '-'], '', $user->data_nascimento ?? old('data_nascimento'))) }}">
+                    </div>
+                    <div class="form-group  col-sm-2">
+                        <input type="hidden" name="tipo" value="professor">
                     </div>
                     {{-- <hr> --}}
                     {{-- <div class="row">

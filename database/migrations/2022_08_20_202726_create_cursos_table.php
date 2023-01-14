@@ -19,6 +19,7 @@ class CreateCursosTable extends Migration
             $table->unsignedBigInteger('disciplina_id');
             $table->unsignedBigInteger('estagio_id');
             $table->unsignedBigInteger('nivel_id');
+            $table->string('observacoes')->nullable();
             $table->timestamps();
             $table->foreign('disciplina_id')->references('id')->on('disciplinas');
             $table->foreign('estagio_id')->references('id')->on('estagios');

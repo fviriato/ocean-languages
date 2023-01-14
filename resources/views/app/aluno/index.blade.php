@@ -7,13 +7,13 @@
 @section('conteudo')
 
     <div class="row">
-        <div class="col-md-12 container-fluid">
+        <div class="col-md-11 container-fluid">
             <div class="card card-purple">
                 <div class="card-header">
                     <h3 class="card-title">Relação de Alunos</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('aluno.home') }}">Voltar</a> &nbsp;&nbsp;&nbsp;
-                        <a class="btn-xs bg-indigo" href="{{ route('aluno.create') }}">Cadastrar Aluno</a> &nbsp;&nbsp;&nbsp;
+                        <a class="btn-xs bg-yellow" href="{{ route('aluno.home') }}">Voltar</a> &nbsp;&nbsp;&nbsp;
+                        <a class="btn-xs bg-yellow" href="{{ route('aluno.create') }}">Cadastrar Aluno</a> &nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
 
@@ -32,7 +32,7 @@
                         <tbody>
                             @foreach ($alunos as $aluno)
                                 <tr style="height:20px">
-                                    <td>{{ str_pad($aluno->id,4,0, STR_PAD_LEFT) }}</td>
+                                    <td>{{ str_pad($aluno->matricula,4,0, STR_PAD_LEFT) }}</td>
                                     <td>{{ $aluno->user->name }}</td>
                                     <td>{{ date('d/m/Y', strtotime($aluno->user->data_nascimento)) }}</td>
                                     <td>{{ $aluno->user->email }}</td>

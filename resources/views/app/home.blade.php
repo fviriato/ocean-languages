@@ -2,25 +2,19 @@
 
 @section('titulo', "{{ date('y/d/Y') }}")
 
-@section('content_header', 'Guarulhos, ' . date('F jS Y'))
+@section('content_header')
 
 @section('conteudo')
 
-
-
     <div class="row">
-        <div class="col-md-8 container-fluid">
-            <h5 class="text-center text-success">{{ Auth::user()->name }}, Seja Bem Vindo(a)!</h5>
+        <div class="col-md-12 container-fluid">
             <br>
             <br>
-            <h1 class="text-center text-purple">Ocean Languages</h1>
+            <h3 class="text-center text-success font-weight-bold">{{ Auth::user()->name }}, Seja Bem Vindo(a)!</h3>
+            <h1 class="text-center text-purple display-1 font-weight-bold">Ocean Languages</h1>
+            <p class="text-center text-primary display-4 font-weight-bold">Sistema de Gestão</p>
             <br>
-            <br>
-            <h2 class="text-center text-primary">Sistema de Gestão</h2>
-            <br>
-            
         </div>
     </div>
-
 
 @endsection

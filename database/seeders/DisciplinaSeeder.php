@@ -36,23 +36,23 @@ class DisciplinaSeeder extends Seeder
 
     
         $idiomaDisciplina = new Disciplina();
-        $idiomaDisciplina->nome = 'Poruguês';
-        $idiomaDisciplina->tipo = 'reforco';
+        $idiomaDisciplina->nome = 'Português';
+        $idiomaDisciplina->tipo = 'reforco_escolar';
         $idiomaDisciplina->save();
 
         $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'Matemática';
-        $idiomaDisciplina->tipo = 'reforco';
+        $idiomaDisciplina->tipo = 'reforco_escolar';
         $idiomaDisciplina->save();
 
         $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'História';
-        $idiomaDisciplina->tipo = 'reforco';
+        $idiomaDisciplina->tipo = 'reforco_escolar';
         $idiomaDisciplina->save();
 
         $idiomaDisciplina = new Disciplina();
         $idiomaDisciplina->nome = 'Geografia';
-        $idiomaDisciplina->tipo = 'reforco';
+        $idiomaDisciplina->tipo = 'reforco_escolar';
         $idiomaDisciplina->save();
 
     }

@@ -2,7 +2,7 @@
 
 @section('title')
 
-@section('content_header')
+@section('content_header', 'Guarulhos - ' . strftime('%A, %d de %B de %Y', strtotime('today')))
 
 @stop
 

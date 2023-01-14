@@ -19,7 +19,7 @@ class CreateSessaosTable extends Migration
             $table->string('ip')->nullable();
             $table->string('navegador')->nullable();
             $table->string('login');
-            $table->string('logout');
+            $table->string('logout')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

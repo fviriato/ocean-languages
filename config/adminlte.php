@@ -274,12 +274,12 @@ return [
 
         [
             'text' => "Professor",
-            'url'  => '/home/professor',
+            'url'  => '/professor',
             'icon' => 'fas fa-address-book',
         ],
         [
             'text' => "Turmas",
-            'url'  => '/home/turma',
+            'url'  => '/turma',
             'icon' => 'fas fa-address-book',
         ],
 

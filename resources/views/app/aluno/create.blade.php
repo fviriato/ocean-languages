@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Cadastro de Aluno</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('aluno.index') }}">Voltar</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('aluno.home') }}">Voltar</a>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@
                         <div class="form-group col-sm-6">
                             <label for="name">Nome Completo</label>
                             <input type="text" name="name" class="form-control form-control-sm" id="name"
-                                placeholder="Nome Completo do user" value="{{ $user->name ?? old('name') }}">
+                                placeholder="Nome Completo do Aluno" value="{{ $user->name ?? old('name') }}">
                         </div>
 
                         <div class="form-group col-sm-3">
@@ -79,7 +79,7 @@
                         <div class="form-group col-sm-3">
                             <label for="rg">RG</label>
                             <input type="text" name="rg" class="form-control form-control-sm" id="rg"
-                                value="{{ $user->rg ?? old('rg') }}" placeholder="RG do Aluno">
+                                value="{{ $user->rg ?? old('rg') }}" placeholder="RG do Aluno" maxlength="14">
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="telefone">Telefone</label>
@@ -164,6 +164,9 @@
                             <input type="hidden" name="password"
                                 value="{{ bcrypt(str_replace(['.', '-'], '', $user->data_nascimento ?? old('data_nascimento'))) }}">
                         </div>
+                        <div class="form-group  col-sm-2">
+                            <input type="hidden" name="tipo" value="aluno">
+                        </div>
 
                     </div>
 
@@ -206,7 +209,7 @@
                             <input type="text" name="responsavel_rg" class="form-control form-control-sm"
                                 id="responsavel_rg"
                                 value="{{ $user->aluno->responsavel->responsavel_rg ?? old('responsavel_rg') }}"
-                                placeholder="RG do Responsável">
+                                placeholder="RG do Responsável" maxlength="14">
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="responsavel_telefone">Telefone do Resp.</label>
