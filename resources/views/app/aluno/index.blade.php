@@ -26,7 +26,7 @@
                                 <th>DT. Nasc</th>
                                 <th>E-mail</th>
                                 <th>Telefone</th>
-                                <th style="width: 40px">Ação</th>
+                                <th>Ação</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,7 +39,10 @@
                                     <td class="mask-phone">{{ $aluno->user->telefone }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('aluno.edit', ['aluno' => $aluno->id]) }}">
-                                            <span class="badge bg-primary">Editar Cadastro</span>
+                                            <span class="badge bg-primary">Editar</span>
+                                        </a>
+                                        <a href="{{ route('aluno.matricular', ['aluno' => $aluno->id]) }}">
+                                            <span class="badge bg-warning">Matricular</span>
                                         </a>
                                     </td>
                                 </tr>

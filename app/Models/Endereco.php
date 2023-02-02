@@ -21,5 +21,8 @@ class Endereco extends Model
         'estado'
     ];
 
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

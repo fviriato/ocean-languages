@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Cadastro de Aluno</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-yellow" href="{{ route('aluno.home') }}">Voltar</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('aluno.index')}}">Voltar</a>
                     </div>
                 </div>
 
@@ -177,14 +177,14 @@
                             <label for="responsavel_nome">Nome Completo do Responsável</label>
                             <input type="text" name="responsavel_nome" class="form-control form-control-sm"
                                 id="responsavel_nome" placeholder="Nome Completo do Responsável"
-                                value="{{ $user->aluno->responsavel->responsavel_nome ?? old('responsavel_nome') }}">
+                                value="{{ $responsavel->user->name ?? old('responsavel_nome') }}">
                         </div>
 
                         <div class="form-group col-sm-3">
                             <label for="responsavel_data_nascimento">Data Nascimento</label>
                             <input type="date" name="responsavel_data_nascimento" class="form-control form-control-sm"
                                 id="responsavel_data_nascimento"
-                                value="{{ $user->aluno->responsavel->responsavel_data_nascimento ?? old('responsavel_data_nascimento') }}">
+                                value="{{ $responsavel->user->data_nascimento ?? old('responsavel_data_nascimento') }}">
                         </div>
 
                     </div>
@@ -194,28 +194,28 @@
                             <label for="responsavel_email">E-mail do Responsável</label>
                             <input type="email" name="responsavel_email" class="form-control form-control-sm"
                                 id="responsavel_email"
-                                value="{{ $user->aluno->responsavel->responsavel_email ?? old('responsavel_email') }}"
+                                value="{{ $responsavel->user->email ?? old('responsavel_email') }}"
                                 placeholder="E-mail do Responsável">
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="responsavel_cpf">CPF do Responsável</label>
                             <input type="text" name="responsavel_cpf" class="form-control form-control-sm"
                                 id="responsavel_cpf"
-                                value="{{ $user->aluno->responsavel->responsavel_cpf ?? old('responsavel_cpf') }}"
+                                value="{{ $responsavel->user->cpf ?? old('responsavel_cpf') }}"
                                 placeholder="CPF do Responsável" maxlength="11">
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="responsavel_rg">RG do Responsável</label>
                             <input type="text" name="responsavel_rg" class="form-control form-control-sm"
                                 id="responsavel_rg"
-                                value="{{ $user->aluno->responsavel->responsavel_rg ?? old('responsavel_rg') }}"
+                                value="{{ $responsavel->user->rg ?? old('responsavel_rg') }}"
                                 placeholder="RG do Responsável" maxlength="14">
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="responsavel_telefone">Telefone do Resp.</label>
                             <input type="text" name="responsavel_telefone"
                                 class="form-control form-control-sm telefone" id="responsavel_telefone"
-                                value="{{ $user->aluno->responsavel->responsavel_telefone ?? old('responsavel_telefone') }}">
+                                value="{{ $responsavel->user->telefone ?? old('responsavel_telefone') }}">
                         </div>
                     </div>
 
@@ -228,7 +228,7 @@
                                 <option></option>
                                 @foreach ($escolaridades as $escolaridade)
                                     <option value="{{ $escolaridade->id }}"
-                                        {{ ($user->aluno->responsavel->responsavel_escolaridade_id ?? old('responsavel_escolaridade_id')) == $escolaridade->id ? 'selected' : '' }}>
+                                        {{ ($responsavel->escolaridade_id ?? old('responsavel_escolaridade_id')) == $escolaridade->id ? 'selected' : '' }}>
                                         {{ $escolaridade->descricao }}</option>
                                 @endforeach
                             </select>
@@ -238,7 +238,7 @@
                             <label for="responsavel_profissao">Profissão</label>
                             <input type="text" name="responsavel_profissao" class="form-control form-control-sm"
                                 id="responsavel_profissao" placeholder="Profissão"
-                                value="{{ $user->aluno->responsavel->responsavel_profissao ?? old('responsavel_profissao') }}">
+                                value="{{ $responsavel->profissao ?? old('responsavel_profissao') }}">
                         </div>
 
                     </div>
@@ -247,7 +247,7 @@
                         <div class="form-group col-sm-6">
                             <label for="endereco_aluno">Usar Mesmo Endereço do Aluno</label>
                             <input type="checkbox" name="endereco_aluno" id="endereco_aluno"
-                                value="{{ $user->aluno->responsavel->responsavel_endereco_aluno ?? old('endereco_aluno') }}">
+                                value="{{ $responsavel->responsavel_endereco_aluno ?? old('endereco_aluno') }}">
                         </div>
                     </div>
 
@@ -256,28 +256,28 @@
                             <label for="responsavel_cep">CEP</label>
                             <input type="text" name="responsavel_cep" class="form-control form-control-sm cep"
                                 id="responsavel_cep"
-                                value="{{ $user->aluno->responsavel->responsavel_cep ?? old('responsavel_cep') }}"
+                                value="{{ $responsavel->user->endereco->cep  ?? old('responsavel_cep') }}"
                                 placeholder="CEP" maxlength="8">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="responsavel_logradouro">Endereço</label>
                             <input type="text" name="responsavel_logradouro" class="form-control form-control-sm"
                                 id="responsavel_logradouro"
-                                value="{{ $user->aluno->responsavel->responsavel_logradouro ?? old('responsavel_logradouro') }}"
+                                value="{{ $responsavel->user->endereco->logradouro ?? old('responsavel_logradouro') }}"
                                 placeholder="Logradouro">
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="responsavel_numero">Número</label>
                             <input type="text" name="responsavel_numero" class="form-control form-control-sm"
                                 id="responsavel_numero"
-                                value="{{ $user->aluno->responsavel->responsavel_numero ?? old('responsavel_numero') }}"
+                                value="{{ $responsavel->user->endereco->numero ?? old('responsavel_numero') }}"
                                 placeholder="Ex. 45B">
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="responsavel_complemento">Complemento</label>
                             <input type="text" name="responsavel_complemento" class="form-control form-control-sm"
                                 id="responsavel_complemento"
-                                value="{{ $user->aluno->responsavel->responsavel_complemento ?? old('responsavel_complemento') }}"
+                                value="{{ $responsavel->user->endereco->complemento ?? old('responsavel_complemento') }}"
                                 placeholder="Ex. Fundos">
                         </div>
                     </div>
@@ -287,21 +287,21 @@
                             <label for="responsavel_bairro">Bairro</label>
                             <input type="text" name="responsavel_bairro" class="form-control form-control-sm"
                                 id="responsavel_bairro"
-                                value="{{ $user->aluno->responsavel->responsavel_bairro ?? old('responsavel_bairro') }}"
+                                value="{{ $responsavel->user->endereco->bairro ?? old('responsavel_bairro') }}"
                                 placeholder="Ex. Alto da Lapa">
                         </div>
                         <div class="form-group col-sm-5">
                             <label for="responsavel_municipio">Município</label>
                             <input type="text" name="responsavel_municipio" class="form-control form-control-sm"
                                 id="responsavel_municipio"
-                                value="{{ $user->aluno->responsavel->responsavel_municipio ?? old('responsavel_municipio') }}"
+                                value="{{ $responsavel->user->endereco->municipio ?? old('responsavel_municipio') }}"
                                 placeholder="Ex. Mogi das Cruzes">
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="responsavel_estado">Estado</label>
                             <input type="text" name="responsavel_estado" class="form-control form-control-sm"
                                 id="responsavel_estado"
-                                value="{{ $user->aluno->responsavel->responsavel_estado ?? old('responsavel_estado') }}"
+                                value="{{ $responsavel->user->endereco->estado ?? old('responsavel_estado') }}"
                                 placeholder="Ex. São Paulo">
                         </div>
                     </div>

@@ -32,5 +32,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 route::get('/home/aluno',[AlunoController::class, 'home'])->name('aluno.home');
+route::get('/aluno/{aluno}/matricular',[AlunoController::class, 'matricular'])->name('aluno.matricular');
+route::post('/aluno/matricular',[AlunoController::class, 'matricular'])->name('aluno.matricular');
 route::resource('/aluno', AlunoController::class);
+
+
 

@@ -33,7 +33,7 @@
                     <form method="POST" action="{{ route('matricular.update', ['matricula' => $matricula->id]) }}">
                         @method('PUT')
                     @else
-                        <form method="POST" action="{{ route('matricular.contrato') }}">
+                        <form method="POST" action="{{ route('aluno.matricular') }}">
                 @endif
 
                 @csrf

@@ -56,7 +56,13 @@ class User extends Authenticatable
         return $this->hasOne(Endereco::class);
     }
 
-    public function aluno(){
+    public function aluno()
+    {
         return $this->hasOne(Aluno::class);
+    }
+
+    public function responsavel()
+    {
+        return $this->belongsTo(User::class);
     }
 }

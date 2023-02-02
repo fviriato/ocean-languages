@@ -9,6 +9,7 @@ use App\Models\Escola;
 use App\Models\Escolaridade;
 use App\Models\Genero;
 use App\Models\Responsavel;
+use App\Models\Turma;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -67,14 +68,13 @@ class AlunoController extends Controller
      */
     public function store(AlunoRequest $request)
     {
-        // dd($request->all());
+
+        $al = new Aluno();
 
         DB::beginTransaction();
         $usuario = User::create($request->all());
         $usuario->endereco()->create($request->all());
-
-        $request['matricula'] = '20230001';
-
+        $request['matricula'] =  $al->gerarMatriculaAluno(); //'20230001';
         $usuario->aluno()->create($request->all());
 
         $idadeAluno = date('Y') - date('Y', strtotime($request->data_nascimento));
@@ -105,18 +105,18 @@ class AlunoController extends Controller
             $userEndereco->save();
 
             $responsavel = new Responsavel();
-
             $responsavel->aluno_id        =  $usuario->aluno->id;
-            $responsavel->escolaridade_id =  $user->escolaridade_id ;
-            $responsavel->profissao       =  $user->profissao;
+            $responsavel->user_id         =  $user->id;
+            $responsavel->escolaridade_id =  $request->responsavel_escolaridade_id;
+            $responsavel->profissao       =  $request->responsavel_profissao;
             $responsavel->save();
-
-
         }
 
         DB::commit();
 
-        dd($request->all());
+        return view('app.aluno.index', [
+            'alunos' => Aluno::with(['user'])->paginate(10)
+        ]);
     }
 
     /**
@@ -138,7 +138,19 @@ class AlunoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $aluno = Aluno::find($id);
+        $user = User::find($aluno->user_id);
+        $responsavel = Responsavel::where('aluno_id', $aluno->id)->first();
+
+        // dd($user->name, $responsavel->user->name);
+
+        return view('app.aluno.create', [
+            'generos'       => Genero::all(),
+            'escolas'       => Escola::all(),
+            'escolaridades' => Escolaridade::all(),
+            'user'          => $user,
+            'responsavel'    => $responsavel ?? ''
+        ]);
     }
 
     /**
@@ -150,7 +162,78 @@ class AlunoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+        // dd($request->all());
+
+        $user = User::find($id);
+        $aluno = Aluno::where('user_id', $user->id)->first();
+        $responsavel = Responsavel::where('aluno_id', $aluno->id)->first();
+        $userResponsavel = User::where('id', $responsavel->user_id)->first();
+        $endResponsavel = Endereco::where('user_id',$userResponsavel->id)->first();
+
+        // dd($endResponsavel);
+
+        DB::beginTransaction();
+
+        $user->update($request->all());
+        $user->endereco->update($request->except(['_method', '_token']));
+        $user->aluno->update($request->all());
+
+        if ($responsavel) {
+            // $userResponsavel = new User();
+            $userResponsavel->name            = $request->responsavel_nome;
+            $userResponsavel->data_nascimento = $request->responsavel_data_nascimento;
+            $userResponsavel->genero_id       = $request->genero_id;
+            $userResponsavel->email           = $request->responsavel_email;
+            $userResponsavel->cpf             = $request->responsavel_cpf;
+            $userResponsavel->rg              = $request->responsavel_rg;
+            $userResponsavel->telefone        = $request->responsavel_telefone;
+            $userResponsavel->tipo            = 'responsavel_aluno';
+            $userResponsavel->update();
+
+            // $userEndereco = new Endereco();
+            $endResponsavel->user_id     = $userResponsavel->id;
+            $endResponsavel->cep         = $request->responsavel_cep;
+            $endResponsavel->logradouro  = $request->responsavel_logradouro;
+            $endResponsavel->numero      = $request->responsavel_numero;
+            $endResponsavel->complemento = $request->responsavel_complemento;
+            $endResponsavel->bairro      = $request->responsavel_bairro;
+            $endResponsavel->municipio   = $request->responsavel_municipio;
+            $endResponsavel->estado      = $request->responsavel_estado;
+            $endResponsavel->update();
+
+            // dd($userEndereco);
+
+            $responsavel->user_id         =  $userResponsavel->id;
+            $responsavel->escolaridade_id =  $request->responsavel_escolaridade_id;
+            $responsavel->profissao       =  $request->responsavel_profissao;
+            $responsavel->update();
+        }
+
+
+        DB::commit();
+
+        return view('app.aluno.index', [
+            'alunos' => Aluno::with(['user'])->paginate(10)
+        ]);
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function matricular(Request $request, $id)
+    {
+
+        return view('app.aluno.matricular', [
+            'alunos'  => Aluno::with('user')->get()->sortBy('user.name'),
+            'turmas'  => Turma::all()
+        ]);
     }
 
     /**

@@ -10,4 +10,9 @@ class Escolaridade extends Model
     use HasFactory;
 
     protected $fillable = ['descricao'];
+
+    public function responsavel()
+    {
+        return $this->hasOne(Responsavel::class);
+    }
 }

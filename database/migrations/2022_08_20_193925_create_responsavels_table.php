@@ -16,10 +16,12 @@ class CreateResponsavelsTable extends Migration
         Schema::create('responsavels', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('aluno_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('escolaridade_id')->nullable();
             $table->string('profissao')->nullable();
             $table->timestamps();
             $table->foreign('aluno_id')->references('id')->on('alunos');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('escolaridade_id')->references('id')->on('escolaridades');
         });
     }
@@ -33,6 +35,7 @@ class CreateResponsavelsTable extends Migration
     {
         Schema::table('responsavels', function (Blueprint $table) {
             $table->dropForeign('responsavels_escolaridade_id_foreign');
+            $table->dropForeign('responsavels_user_id_foreign');
             $table->dropForeign('responsavels_aluno_id_foreign');
         });
         Schema::dropIfExists('responsavels');
