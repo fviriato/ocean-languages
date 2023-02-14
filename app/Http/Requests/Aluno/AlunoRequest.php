@@ -31,7 +31,7 @@ class AlunoRequest extends FormRequest
             'data_nascimento' => 'required',
             'genero_id'       => 'required|exists:generos,id',
             'email'           => "required|email|unique:users",
-            'cpf'             => "nullable|min:11|max:11|unique:users",
+            'cpf'             => "required|min:14|max:14|unique:users",
             'rg'              => 'nullable',
             'telefone'        => 'required',
             'cep'             => 'required',
@@ -42,9 +42,13 @@ class AlunoRequest extends FormRequest
             'estado'          => 'required',
             'escola_id'       => 'nullable',
             'escolaridade_id' => 'nullable',
+            'foto'            => 'nullable',
+            'profissao'       => 'nullable',
         ];
 
         if ($idadeAluno  < 18) {
+            $rule['email']                        = 'nullable';
+            $rule['telefone']                     = 'nullable';
             $rule['responsavel_nome']             = 'required';
             $rule['responsavel_data_nascimento']  = 'required';
             $rule['responsavel_email']            = 'required|email';
@@ -82,6 +86,7 @@ class AlunoRequest extends FormRequest
             'genero_id.required'        => 'Informar o gênero do(a) aluno(a)',
             'email.required'            => 'O e-mail do(a) aluno(a) é obrigatório',
             'email.unique'              => 'O e-mail informado já está cadastrado',
+            'cpf.required'              => 'O CPF do aluno é obrigatório',
             'cpf.min'                   => 'O CPF deve conter 11 numeros',
             'cpf.max'                   => 'O CPF deve conter 11 numeros',
             'cpf.unique'                => 'O CPF do aluno informado já está cadastrado',

@@ -16,7 +16,7 @@ class CreateEnderecosTable extends Migration
         Schema::create('enderecos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('cep', 10);
+            $table->string('cep', 9);
             $table->string('logradouro');
             $table->string('numero');
             $table->string('complemento')->nullable();

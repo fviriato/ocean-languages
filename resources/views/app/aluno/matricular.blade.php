@@ -2,7 +2,7 @@
 
 @section('titulo', 'Matricular Aluno')
 
-@section('content_header', 'Guarulhos, ' . date('F jS Y'))
+@section('content_header')
 
 @section('conteudo')
 
@@ -40,13 +40,12 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-sm-4">
-                            <label for="user_id">Aluno</label>
-                            <select name="user_id" class="form-control form-control-sm" id="user_id">
+                            <label for="aluno_id">Aluno</label>
+                            <select name="aluno_id" class="form-control form-control-sm" id="aluno_id">
                                 <option></option>
                                 @foreach ($alunos as $aluno)
                                     <option value="{{ $aluno->id }}"
-                                        {{ $aluno->user_id ?? old('user_id') == $aluno->id ? 'selected' : '' }}>
-                                        {{ $aluno->user->name }}</option>
+                                        {{ ($aluno->aluno_id ?? old('aluno_id')) == $aluno->id ? 'selected' : '' }}> {{ $aluno->user->name }}</option>
                                 @endforeach
                             </select>
                         </div>

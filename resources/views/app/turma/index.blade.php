@@ -14,7 +14,7 @@
             <div class="card-header">
                 <h3 class="card-title">Turmas de Alunos</h3>
                 <div class="card-tools">
-                    <a class="btn-xs bg-indigo" href="{{ route('turma.create') }}">Cadastrar Nova Turma</a>
+                    <a class="btn-xs bg-yellow" href="{{ route('turma.create') }}">Cadastrar Nova Turma</a>
                 </div>
             </div>
 

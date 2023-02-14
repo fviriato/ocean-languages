@@ -2,7 +2,7 @@
 
 @section('titulo', 'Cadastrar Aluno')
 
-@section('content_header', 'Guarulhos, ' . date('F jS Y'))
+@section('content_header')
 
 @section('conteudo')
 
@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Cadastro de Aluno</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-yellow" href="{{ route('aluno.index')}}">Voltar</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('aluno.index') }}">Voltar</a>
                     </div>
                 </div>
 
@@ -30,11 +30,12 @@
                 @endif
 
                 @if (!empty($user->id))
-                    <form method="POST" action="{{ route('aluno.update', ['aluno' => $user->id]) }}">
+                    <form method="POST" action="{{ route('aluno.update', ['aluno' => $user->id]) }}" enctype="multipart/form-data">
                         @method('PUT')
                     @else
-                        <form method="POST" action="{{ route('aluno.store') }}">
+                        <form method="POST" action="{{ route('aluno.store') }}" enctype="multipart/form-data">
                 @endif
+
 
                 @csrf
 
@@ -73,7 +74,7 @@
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="cpf">CPF</label>
-                            <input type="text" name="cpf" class="form-control form-control-sm" id="cpf"
+                            <input type="text" name="cpf" class="form-control form-control-sm cpf" id="cpf"
                                 value="{{ $user->cpf ?? old('cpf') }}" placeholder="CPF do Aluno" maxlength="11">
                         </div>
                         <div class="form-group col-sm-3">
@@ -156,10 +157,12 @@
                             </select>
                         </div>
 
-                        <div class="form-group  col-sm-4">
-                            <label class="" for="customFile">Foto do Aluno</label>
-                            <input type="file" class="" name="foto" id="customFile">
+                        <div class="form-group col-sm-4">
+                            <label for="profissao">Profissão</label>
+                            <input type="text" name="profissao" class="form-control form-control-sm" id="profissao"
+                                value="{{ $user->aluno->profissao ?? old('profissao') }}" placeholder="Ex. Engenheiro">
                         </div>
+
                         <div class="form-group  col-sm-4">
                             <input type="hidden" name="password"
                                 value="{{ bcrypt(str_replace(['.', '-'], '', $user->data_nascimento ?? old('data_nascimento'))) }}">
@@ -169,6 +172,14 @@
                         </div>
 
                     </div>
+
+
+                    {{-- <div class="row">
+                        <div class="form-group  col-sm-4">
+                            <label class="" for="foto">Foto do Aluno</label>
+                            <input type="file" class="form-control-file" name="foto" id="foto" value="{{ $user->foto ?? old('foto') }}">
+                        </div>
+                    </div> --}}
 
                     <hr>
 
@@ -199,16 +210,14 @@
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="responsavel_cpf">CPF do Responsável</label>
-                            <input type="text" name="responsavel_cpf" class="form-control form-control-sm"
-                                id="responsavel_cpf"
-                                value="{{ $responsavel->user->cpf ?? old('responsavel_cpf') }}"
+                            <input type="text" name="responsavel_cpf" class="form-control form-control-sm cpf"
+                                id="responsavel_cpf" value="{{ $responsavel->user->cpf ?? old('responsavel_cpf') }}"
                                 placeholder="CPF do Responsável" maxlength="11">
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="responsavel_rg">RG do Responsável</label>
                             <input type="text" name="responsavel_rg" class="form-control form-control-sm"
-                                id="responsavel_rg"
-                                value="{{ $responsavel->user->rg ?? old('responsavel_rg') }}"
+                                id="responsavel_rg" value="{{ $responsavel->user->rg ?? old('responsavel_rg') }}"
                                 placeholder="RG do Responsável" maxlength="14">
                         </div>
                         <div class="form-group col-sm-2">
@@ -256,7 +265,7 @@
                             <label for="responsavel_cep">CEP</label>
                             <input type="text" name="responsavel_cep" class="form-control form-control-sm cep"
                                 id="responsavel_cep"
-                                value="{{ $responsavel->user->endereco->cep  ?? old('responsavel_cep') }}"
+                                value="{{ $responsavel->user->endereco->cep ?? old('responsavel_cep') }}"
                                 placeholder="CEP" maxlength="8">
                         </div>
                         <div class="form-group col-sm-6">

@@ -41,15 +41,15 @@
                     <br>
                     <br>
 
-                    <a class="btn btn-app" href="{{ route('colaborador.index') }}">
+                    {{-- <a class="btn btn-app" href="{{ route('colaborador.index') }}">
                         <i class="fas fa-user-plus"></i>Colaborador
-                    </a>
+                    </a> --}}
 
                     <br>
                     <br>
                     <br>
 
-                    <a class="btn btn-app">
+                    {{-- <a class="btn btn-app">
                         <i class="fas fa-book-open"></i>Livros
                     </a>
                     <a class="btn btn-app">
@@ -66,8 +66,8 @@
                     </a>
                     <a class="btn btn-app">
                         <i class="fas fa-heart"></i> Likes
-                    </a>
-                    <p>Configurações Gerenciais ESCONDER COM REGRA DE NEGÓCIO</p>
+                    </a> --}}
+                    {{-- <p>Configurações Gerenciais ESCONDER COM REGRA DE NEGÓCIO</p>
                     <a class="btn btn-app bg-secondary">
                         <span class="badge bg-success">300</span>
                         <i class="fas fa-barcode"></i> Products
@@ -87,7 +87,7 @@
                     <a class="btn btn-app bg-info">
                         <span class="badge bg-danger">531</span>
                         <i class="fas fa-heart"></i> Likes
-                    </a>
+                    </a> --}}
                 </div>
 
             </div>

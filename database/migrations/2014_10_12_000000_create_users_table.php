@@ -18,9 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->date('data_nascimento');
             $table->unsignedBigInteger('genero_id');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('password');
-            $table->string('cpf', 11)->unique()->nullable();
+            $table->string('cpf', 14)->unique()->nullable();
             $table->string('rg', 14)->nullable();
             $table->string('telefone', 20)->nullable();
             $table->enum('tipo', ['aluno', 'responsavel_aluno', 'professor', 'colaborador', 'master']);

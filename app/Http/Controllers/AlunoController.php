@@ -69,9 +69,20 @@ class AlunoController extends Controller
     public function store(AlunoRequest $request)
     {
 
+        // dd($request->foto);
+
         $al = new Aluno();
 
+        if ($request->foto) {
+
+            $request['foto'] = $request->foto->store(public_path('users'));
+
+            // dd($request['foto']);
+
+        }
+
         DB::beginTransaction();
+
         $usuario = User::create($request->all());
         $usuario->endereco()->create($request->all());
         $request['matricula'] =  $al->gerarMatriculaAluno(); //'20230001';
@@ -81,32 +92,43 @@ class AlunoController extends Controller
 
         if ($idadeAluno  < 18) {
 
+            //Verificar se o responsável já é responsável por outro aluno(a)
             $user = new User();
-            $user->name            = $request->responsavel_nome;
-            $user->data_nascimento = $request->responsavel_data_nascimento;
-            $user->genero_id       = $request->genero_id;
-            $user->email           = $request->responsavel_email;
-            $user->password        = bcrypt(str_replace(['.', '-'], '', $request->data_nascimento));
-            $user->cpf             = $request->responsavel_cpf;
-            $user->rg              = $request->responsavel_rg;
-            $user->telefone        = $request->responsavel_telefone;
-            $user->tipo = 'responsavel_aluno';
-            $user->save();
 
-            $userEndereco = new Endereco();
-            $userEndereco->user_id     = $user->id;
-            $userEndereco->cep         = $request->responsavel_cep;
-            $userEndereco->logradouro  = $request->responsavel_logradouro;
-            $userEndereco->numero      = $request->responsavel_numero;
-            $userEndereco->complemento = $request->responsavel_complemento;
-            $userEndereco->bairro      = $request->responsavel_bairro;
-            $userEndereco->municipio   = $request->responsavel_municipio;
-            $userEndereco->estado      = $request->responsavel_estado;
-            $userEndereco->save();
+            $respJaCad = $user->where('email', $request->responsavel_email)->first();
+
+            // dd($respJaCad->id);
+
+
+            if (!$respJaCad) {
+
+                $user->name            = $request->responsavel_nome;
+                $user->data_nascimento = $request->responsavel_data_nascimento;
+                $user->genero_id       = $request->genero_id;
+                $user->email           = $request->responsavel_email;
+                $user->password        = bcrypt(str_replace(['.', '-'], '', $request->data_nascimento));
+                $user->cpf             = $request->responsavel_cpf;
+                $user->rg              = $request->responsavel_rg;
+                $user->telefone        = $request->responsavel_telefone;
+                $user->tipo = 'responsavel_aluno';
+                $user->save();
+
+                //Cadastrar endereço do responsável
+                $userEndereco = new Endereco();
+                $userEndereco->user_id     = $user->id;
+                $userEndereco->cep         = $request->responsavel_cep;
+                $userEndereco->logradouro  = $request->responsavel_logradouro;
+                $userEndereco->numero      = $request->responsavel_numero;
+                $userEndereco->complemento = $request->responsavel_complemento;
+                $userEndereco->bairro      = $request->responsavel_bairro;
+                $userEndereco->municipio   = $request->responsavel_municipio;
+                $userEndereco->estado      = $request->responsavel_estado;
+                $userEndereco->save();
+            }
 
             $responsavel = new Responsavel();
             $responsavel->aluno_id        =  $usuario->aluno->id;
-            $responsavel->user_id         =  $user->id;
+            $responsavel->user_id         =  $user->id ?? $respJaCad->id;
             $responsavel->escolaridade_id =  $request->responsavel_escolaridade_id;
             $responsavel->profissao       =  $request->responsavel_profissao;
             $responsavel->save();
@@ -163,14 +185,11 @@ class AlunoController extends Controller
     public function update(Request $request, $id)
     {
 
-
         // dd($request->all());
 
         $user = User::find($id);
         $aluno = Aluno::where('user_id', $user->id)->first();
         $responsavel = Responsavel::where('aluno_id', $aluno->id)->first();
-        $userResponsavel = User::where('id', $responsavel->user_id)->first();
-        $endResponsavel = Endereco::where('user_id',$userResponsavel->id)->first();
 
         // dd($endResponsavel);
 
@@ -181,6 +200,9 @@ class AlunoController extends Controller
         $user->aluno->update($request->all());
 
         if ($responsavel) {
+
+            $userResponsavel = User::where('id', $responsavel->user_id)->first();
+
             // $userResponsavel = new User();
             $userResponsavel->name            = $request->responsavel_nome;
             $userResponsavel->data_nascimento = $request->responsavel_data_nascimento;
@@ -192,6 +214,8 @@ class AlunoController extends Controller
             $userResponsavel->tipo            = 'responsavel_aluno';
             $userResponsavel->update();
 
+
+            $endResponsavel = Endereco::where('user_id', $userResponsavel->id)->first();
             // $userEndereco = new Endereco();
             $endResponsavel->user_id     = $userResponsavel->id;
             $endResponsavel->cep         = $request->responsavel_cep;

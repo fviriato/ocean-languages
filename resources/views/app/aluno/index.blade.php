@@ -2,7 +2,7 @@
 
 @section('titulo', 'Alunos')
 
-@section('content_header', 'Guarulhos, ' . date('F jS Y'))
+@section('content_header')
 
 @section('conteudo')
 
@@ -21,8 +21,9 @@
                     <table class="table table-bordered table-hover table-sm">
                         <thead>
                             <tr>
+                                {{-- <th>Aluno</th> --}}
                                 <th>Matrícula</th>
-                                <th>Aluno</th>
+                                <th>Nome</th>
                                 <th>DT. Nasc</th>
                                 <th>E-mail</th>
                                 <th>Telefone</th>
@@ -32,7 +33,8 @@
                         <tbody>
                             @foreach ($alunos as $aluno)
                                 <tr style="height:20px">
-                                    <td>{{ str_pad($aluno->matricula,4,0, STR_PAD_LEFT) }}</td>
+                                    {{-- <td><img src="{{ url("tmp/{$aluno->user->foto}") }}" alt="{{ $aluno->user->name }}"></td> --}}
+                                    <td>{{ $aluno->matricula }}</td>
                                     <td>{{ $aluno->user->name }}</td>
                                     <td>{{ date('d/m/Y', strtotime($aluno->user->data_nascimento)) }}</td>
                                     <td>{{ $aluno->user->email }}</td>
@@ -41,7 +43,7 @@
                                         <a href="{{ route('aluno.edit', ['aluno' => $aluno->id]) }}">
                                             <span class="badge bg-primary">Editar</span>
                                         </a>
-                                        <a href="{{ route('aluno.matricular', ['aluno' => $aluno->id]) }}">
+                                        <a href="{{ route('aluno.selecionar.contrato', ['aluno' => $aluno->id]) }}">
                                             <span class="badge bg-warning">Matricular</span>
                                         </a>
                                     </td>

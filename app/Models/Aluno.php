@@ -14,6 +14,7 @@ class Aluno extends Model
     protected $fillable = [
         'user_id',
         'matricula',
+        'profissao',
         'escola_id',
         'escolaridade_id',
     ];
@@ -22,9 +23,16 @@ class Aluno extends Model
     {
 
         $ano = date('Y');
-        $ultimaMatricula = DB::table('alunos')->orderBy('id', 'DESC')->first()->matricula;
-        $dados = str_split($ultimaMatricula, 4);
-        $proxMatricula = str_pad($dados[1] + 1, 4, 0, STR_PAD_LEFT);
+        $ultimaMatricula = DB::table('alunos')->orderBy('id', 'DESC')->first();
+
+        if (!$ultimaMatricula  || $ultimaMatricula  == null) {
+
+            $proxMatricula = '0001';
+        } else {
+            $dados = str_split($ultimaMatricula->matricula, 4);
+            $proxMatricula = str_pad($dados[1] + 1, 4, 0, STR_PAD_LEFT);
+        }
+
         $proxMatricula = $ano . $proxMatricula;
 
         return $proxMatricula;
