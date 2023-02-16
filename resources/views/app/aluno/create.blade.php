@@ -318,8 +318,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <button type="submit"
-                        class="btn btn-primary">{{ isset($user->id) ? 'Atualizar' : 'Cadastrar' }}</button>
+                    <button type="submit" class="btn btn-primary">{{ isset($user->id) ? 'Atualizar' : 'Cadastrar' }}</button>
                 </div>
                 </form>
             </div>

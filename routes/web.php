@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\EscolaController;
@@ -56,6 +57,7 @@ Route::resource('/config', ConfigController::class);
 Route::resource('genero', GeneroController::class);
 Route::resource('nivel', NivelController::class);
 Route::resource('estagio', EstagioController::class);
+Route::resource('cargo', CargoController::class);
 Route::resource('disciplina', DisciplinaController::class);
 Route::resource('escola', EscolaController::class);
 Route::resource('escolaridade', EscolaridadeController::class);

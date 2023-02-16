@@ -43,9 +43,9 @@
                                         <a href="{{ route('aluno.edit', ['aluno' => $aluno->id]) }}">
                                             <span class="badge bg-primary">Editar</span>
                                         </a>
-                                        <a href="{{ route('aluno.selecionar.contrato', ['aluno' => $aluno->id]) }}">
+                                        {{-- <a href="{{ route('aluno.selecionar.contrato', ['aluno' => $aluno->id]) }}">
                                             <span class="badge bg-warning">Matricular</span>
-                                        </a>
+                                        </a> --}}
                                     </td>
                                 </tr>
                             @endforeach

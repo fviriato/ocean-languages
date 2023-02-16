@@ -10,7 +10,7 @@
         <div class="col-md-8 container-fluid">
 
             <div class="card">
-                <div class="card-header">
+                <div class="card-header bg-blue">
                     <h3 class="card-title">CONFIGURAÇÕES DO SISTEMA</h3>
                 </div>
                 <div class="card-body">
@@ -32,6 +32,10 @@
                     </a>
                     <a class="btn btn-app" href="{{ route('disciplina.index') }}">
                         <i class="fas fa-language"></i>Idioma / Disciplina
+                    </a>
+
+                    <a class="btn btn-app" href="{{ route('cargo.index') }}">
+                        <i class="fas fa-language"></i>Cargos
                     </a>
                     {{-- <a class="btn btn-app" href="{{ route('curso.index') }}">
                         <i class="fas fa-book-open"></i></i>Cursos

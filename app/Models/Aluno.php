@@ -28,9 +28,12 @@ class Aluno extends Model
         if (!$ultimaMatricula  || $ultimaMatricula  == null) {
 
             $proxMatricula = '0001';
+
         } else {
+
             $dados = str_split($ultimaMatricula->matricula, 4);
             $proxMatricula = str_pad($dados[1] + 1, 4, 0, STR_PAD_LEFT);
+            
         }
 
         $proxMatricula = $ano . $proxMatricula;

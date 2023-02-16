@@ -77,8 +77,6 @@ class AlunoController extends Controller
 
             $request['foto'] = $request->foto->store(public_path('users'));
 
-            // dd($request['foto']);
-
         }
 
         DB::beginTransaction();

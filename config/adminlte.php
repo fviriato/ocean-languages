@@ -273,27 +273,32 @@ return [
         ],
 
         [
-            'text' => "Professor",
-            'url'  => '/professor',
-            'icon' => 'fas fa-address-book',
-        ],
-        [
-            'text' => "Turmas",
-            'url'  => '/turma',
+            'text' => 'Professor',
+            'url'  => '/home/professor',
             'icon' => 'fas fa-address-book',
         ],
 
-        [
-            'text' => 'Financeiro',
-            'url'  => '/financeiro',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
 
-        [
-            'text' => 'Gerencial',
-            'url'  => '/gerencial',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+
+        // [
+        //     'text' => "Turmas",
+        //     'url'  => '/turma',
+        //     'icon' => 'fas fa-address-book',
+        // ],
+
+        // [
+        //     'text' => 'Financeiro',
+        //     'url'  => '/financeiro',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
+
+        // [
+        //     'text' => 'Gerencial',
+        //     'url'  => '/gerencial',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
+
+
 
         ['header' => 'settings'],
         [

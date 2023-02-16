@@ -19,15 +19,11 @@ class CargoSeeder extends Seeder
         $cargo->save();
 
         $cargo = new Cargo();
-        $cargo->nome = 'Professor (a) de Idiomas';
-        $cargo->save();        
-        
-        $cargo = new Cargo();
-        $cargo->nome = 'Professor(a) de Reforço Escolar';
+        $cargo->nome = 'Professor';
         $cargo->save();
 
         $cargo = new Cargo();
-        $cargo->nome = 'Secretária(o)';
+        $cargo->nome = 'Secretária';
         $cargo->save();
     }
 }

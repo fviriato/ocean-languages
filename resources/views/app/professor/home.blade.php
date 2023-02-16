@@ -2,30 +2,30 @@
 
 @section('titulo', 'Professor')
 
-@section('content_header', 'Guarulhos, ' . date('F jS Y'))
+@section('content_header')
 
 @section('conteudo')
 
     <div class="row">
-        <div class="col-md-9 container-fluid">
+        <div class="col-md-10 container-fluid">
 
             <div class="card">
-                <div class="card-header bg-gradient-olive">
+                <div class="card-header bg-blue">
                     <h3 class="card-title">MENU DE PROFESSORES</h3>
                 </div>
                 <div class="card-body">
-                    <a class="btn btn-app" href="{{ route('colaborador.create') }}">
+                    <a class="btn btn-app" href="{{ route('professor.create') }}">
                         <i class="fas fa-file-signature"></i>Cadastrar
                     </a>
-                    <a class="btn btn-app" href="">
+                    {{-- <a class="btn btn-app" href="">
                         <i class="fas fa-chalkboard"></i>Matérias
-                    </a>
+                    </a> --}}
                     <a class="btn btn-app" href="{{ route('professor.index') }}">
                         <i class="fas fa-restroom"></i>Professores
                     </a>
-                    <a class="btn btn-app">
+                    {{-- <a class="btn btn-app">
                         <i class="fas fa-file-word"></i>Relatórios
-                    </a>
+                    </a> --}}
 
                 </div>
 
