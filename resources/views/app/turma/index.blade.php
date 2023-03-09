@@ -8,7 +8,7 @@
 
 
 <div class="row">
-    <div class="col-md-10 container-fluid">
+    <div class="col-md-12 container-fluid">
 
         <div class="card card-purple">
             <div class="card-header">
@@ -27,6 +27,11 @@
                             <th>Idioma</th>
                             <th>Estágio</th>
                             <th>Nível</th>
+                            <th>Modalidade</th>
+                            <th>De</th>
+                            <th>E</th>
+                            <th>Das</th>
+                            <th>ás</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -34,9 +39,14 @@
                         @foreach ($turmas as $turma)
                             <tr>
                                 <td>{{ $turma->nome }}</td>
-                                <td>{{ $turma->curso->idiomaDisciplina->nome }}</td>
+                                <td>{{ $turma->curso->disciplina->nome }}</td>
                                 <td>{{ $turma->curso->estagio->nome }}</td>
                                 <td>{{ $turma->curso->nivel->nome }}</td>
+                                <td>{{ Str::ucfirst($turma->modalidade) }}</td>
+                                <td>{{ Str::ucfirst($turma->primeiro_dia_semana)}}</td>
+                                <td>{{ Str::ucfirst($turma->segundo_dia_semana) }}</td>
+                                <td>{{ $turma->hora_inicio }}</td>
+                                <td>{{ $turma->hora_fim}}</td>
                                 <td class="text-center">
                                     <a href="{{ route('turma.edit', ['turma' => $turma->id]) }}">
                                         <span class="badge bg-primary">Editar</span>

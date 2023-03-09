@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Criar Nova Turma</h3>
                     <div class="card-tools">
-                        <a class="btn btn-xs btn-primary" href="{{ route('turma.index') }}">Voltar</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('turma.index') }}">Voltar</a>
                     </div>
                 </div>
                 @if ($errors->any())
@@ -46,13 +46,13 @@
                         </div>
 
                         <div class="form-group col-sm-2">
-                            <label for="idioma_disciplina_id">Idioma</label>
-                            <select name="idioma_disciplina_id" class="form-control form-control-sm"
-                                id="idioma_disciplina_id">
+                            <label for="disciplina_id">Idioma</label>
+                            <select name="disciplina_id" class="form-control form-control-sm"
+                                id="disciplina_id">
                                 <option></option>
                                 @foreach ($idiomas as $idioma)
                                     <option value="{{ $idioma->id }}"
-                                        {{ ($turma->curso->idioma_disciplina_id ?? old('idioma_disciplina_id')) == $idioma->id ? 'selected' : '' }}>
+                                        {{ ($turma->curso->disciplina_id ?? old('disciplina_id')) == $idioma->id ? 'selected' : '' }}>
                                         {{ $idioma->nome }}</option>
                                 @endforeach
                             </select>
@@ -110,7 +110,7 @@
                                 <option></option>
                                 @foreach ($professores as $professor)
                                     <option value="{{ $professor->id }}" {{ ($turma->colaborador_id ?? old('colaborador_id')) == $professor->id ? 'selected' : '' }}>
-                                        {{ $professor->name }}</option>
+                                        {{ $professor->user->name }}</option>
                                 @endforeach
                             </select>
                         </div>

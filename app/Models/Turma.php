@@ -34,8 +34,8 @@ class Turma extends Model
         return $this->belongsTo(Colaborador::class);
     }
 
-    public function idiomaDisciplina()
+    public function disciplina()
     {
-        return $this->belongsTo(IdiomaDisciplina::class);
+        return $this->belongsTo(Disciplina::class);
     }
 }

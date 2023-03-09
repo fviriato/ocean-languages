@@ -20,10 +20,10 @@
                     <a class="btn btn-app" href="{{ route('aluno.index') }}">
                         <i class="fas fa-restroom"></i>Alunos
                     </a>
-                    {{-- <a class="btn btn-app" href="">
+                    {{-- <a class="btn btn-app" href="{{ route('aluno.selecionar.contrato') }}">
                         <i class="fas fa-address-card"></i>Matricular
-                    </a>
-                    <a class="btn btn-app" href="">
+                    </a> --}}
+                    {{-- <a class="btn btn-app" href="">
                         <i class="fas fa-restroom"></i>Contratos
                     </a>
                     <a class="btn btn-app">

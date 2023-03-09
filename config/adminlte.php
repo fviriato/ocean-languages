@@ -280,11 +280,11 @@ return [
 
 
 
-        // [
-        //     'text' => "Turmas",
-        //     'url'  => '/turma',
-        //     'icon' => 'fas fa-address-book',
-        // ],
+        [
+            'text' => "Turmas",
+            'url'  => '/turma',
+            'icon' => 'fas fa-address-book',
+        ],
 
         // [
         //     'text' => 'Financeiro',

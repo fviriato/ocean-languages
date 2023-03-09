@@ -37,7 +37,7 @@ class TurmaController extends Controller
             'idiomas'        => Disciplina::where('tipo', 'idioma')->orderBy('nome')->get(),
             'estagios'       => Estagio::all(),
             'niveis'         => Nivel::all(),
-            'professores'    => ''
+            'professores'    => Colaborador::where('cargo_id',2)->get()
         ]);
     }
 
@@ -49,11 +49,10 @@ class TurmaController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
 
         $rule = [
             'nome'                      => 'required',
-            'idioma_disciplina_id'      => 'required|exists:idioma_disciplinas,id',
+            'disciplina_id'             => 'required|exists:disciplinas,id',
             'estagio_id'                => 'required|exists:estagios,id',
             'nivel_id'                  => 'required|exists:nivels,id',
             'modalidade'                => 'required',
@@ -70,7 +69,7 @@ class TurmaController extends Controller
         $feedback = [
             'nome.required'                 => 'Informe um nome para a Turma',
             'required'                      => 'O campo :attribute é obrigatorio',
-            'idioma_disciplina_id.exists'   => 'O Curso Informado não está cadastrado!',
+            'disciplina_id.exists'          => 'O Curso Informado não está cadastrado!',
             'tipo.required'                 => 'Informar se é Individual ou Grupo',
             'colaborador_id.exists'         => 'O Colaborador Informado não está cadastrado!',
         ];
@@ -82,16 +81,9 @@ class TurmaController extends Controller
             DB::beginTransaction();
 
             $curso = Curso::create($request->all());
-            $user = User::find($request->input('colaborador_id'))->id;
-            $colaborador = Colaborador::where('user_id', $user)->get();
-
             $turma = new Turma();
-
             $request['curso_id'] = $curso->id;
-            $request['colaborador_id'] = $colaborador[0]->id;
             $turma->create($request->all());
-
-
             DB::commit();
         } catch (\Exception $exception) {
 
@@ -122,12 +114,12 @@ class TurmaController extends Controller
      */
     public function edit(Turma $turma)
     {
-    
+
         return view('app.turma.create', [
             'idiomas'        => Disciplina::where('tipo', 'idioma')->orderBy('nome')->get(),
             'estagios'       => Estagio::all(),
             'niveis'         => Nivel::all(),
-            'professores'    => User::where('tipo', 'professor')->get(),
+            'professores'    => Colaborador::where('cargo_id',2)->get(),
             'turma'          => $turma
         ]);
     }
@@ -141,9 +133,10 @@ class TurmaController extends Controller
      */
     public function update(Request $request, Turma $turma)
     {
+        // dd($turma);
         $rule = [
             'nome'                      => 'required',
-            'idioma_disciplina_id'      => 'required|exists:idioma_disciplinas,id',
+            'disciplina_id'             => 'required|exists:disciplinas,id',
             'estagio_id'                => 'required|exists:estagios,id',
             'nivel_id'                  => 'required|exists:nivels,id',
             'modalidade'                => 'required',
@@ -160,7 +153,7 @@ class TurmaController extends Controller
         $feedback = [
             'nome.required'                 => 'Informe um nome para a Turma',
             'required'                      => 'O campo :attribute é obrigatorio',
-            'idioma_disciplina_id.exists'   => 'O Curso Informado não está cadastrado!',
+            'disciplina_id.exists'          => 'O Curso Informado não está cadastrado!',
             'tipo.required'                 => 'Informar se é Individual ou Grupo',
             'colaborador_id.exists'         => 'O Colaborador Informado não está cadastrado!',
         ];
@@ -172,18 +165,6 @@ class TurmaController extends Controller
             DB::beginTransaction();
 
             $turma->curso->update($request->all());
-
-            // $curso = new Curso();
-
-            // $curso->update($request->all());
-
-            $user = User::find($request->input('colaborador_id'))->id;
-            $colaborador = Colaborador::where('user_id', $user)->get();
-
-            // $turma = new Turma();
-
-            $request['curso_id'] = $turma->curso_id;
-            $request['colaborador_id'] = $colaborador[0]->id;
             $turma->update($request->all());
 
 

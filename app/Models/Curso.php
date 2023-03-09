@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\IdiomaDisciplina;
 use App\Models\Estagio;
 use App\Models\Nivel;
 
@@ -13,14 +12,14 @@ class Curso extends Model
     use HasFactory;
     protected $fillable = [
         'nome',
-        'idioma_disciplina_id',
+        'disciplina_id',
         'estagio_id',
         'nivel_id'
     ];
 
-    public function idiomaDisciplina()
+    public function disciplina()
     {
-        return $this->belongsTo(IdiomaDisciplina::class);
+        return $this->belongsTo(Disciplina::class);
     }
 
     public function estagio()
