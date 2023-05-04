@@ -4,11 +4,14 @@
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\EscolaController;
 use App\Http\Controllers\EscolaridadeController;
 use App\Http\Controllers\EstagioController;
 use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\TurmaController;
@@ -31,28 +34,26 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::post('/home', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/pedagogico', [App\Http\Controllers\HomeController::class, 'pedagogico'])->name('pedagogico');
-// Route::get('/financeiro', [App\Http\Controllers\HomeController::class, 'financeiro'])->name('financeiro');
-// Route::get('/administrativo', [App\Http\Controllers\HomeController::class, 'administrativo'])->name('administrativo');
-// Route::get('/gerencial', [App\Http\Controllers\HomeController::class, 'gerencial'])->name('gerencial');
-// Route::get('admin/pages', [App\Http\Controllers\HomeController::class, 'teste'])->name('teste');
-
-
-
-route::get('/aluno/{aluno}/matricular',[AlunoController::class, 'matricular'])->name('aluno.selecionar.contrato');
-route::post('/aluno/matricular',[AlunoController::class, 'matricular'])->name('aluno.matricular');
-
-
-route::get('/home/aluno',[AlunoController::class, 'home'])->name('aluno.home');
+route::get('/home/aluno', [AlunoController::class, 'home'])->name('aluno.home');
 route::resource('/aluno', AlunoController::class);
-route::get('/home/professor',[ProfessorController::class, 'home'])->name('professor.home');
+route::get('/home/professor', [ProfessorController::class, 'home'])->name('professor.home');
 route::resource('/professor', ProfessorController::class);
 
-route::resource('/turma', TurmaController::class);
+route::get('/contrato/home', [ContratoController::class, 'home'])->name('contrato.home');
+route::get('/contrato/revisar', [ContratoController::class, 'revisar'])->name('contrato.revisar');
+route::get('/contrato/{aluno}/{turma}/{contrato}/ver', [ContratoController::class, 'verContrato'])->name('contrato.ver');
+route::resource('/contrato', ContratoController::class);
 
+route::resource('/matricula',MatriculaController::class);
+
+route::get('/turma/{turma}/ver', [TurmaController::class,'verAlunos'])->name('turma.ver.alunos');
+route::resource('/turma', TurmaController::class);
 Route::resource('/config', ConfigController::class);
 Route::resource('genero', GeneroController::class);
 Route::resource('nivel', NivelController::class);

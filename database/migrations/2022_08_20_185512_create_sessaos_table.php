@@ -18,8 +18,8 @@ class CreateSessaosTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('ip')->nullable();
             $table->string('navegador')->nullable();
-            $table->string('login');
-            $table->string('logout')->nullable();
+            $table->timestamp('login');
+            $table->timestamp('logout')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

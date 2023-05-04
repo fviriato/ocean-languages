@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Nível de Ensino</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('nivel.create') }}">Cadastrar Nível de Ensino</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('nivel.create') }}">Cadastrar Nível de Ensino</a>
                     </div>
                 </div>
 

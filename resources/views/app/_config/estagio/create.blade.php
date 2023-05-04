@@ -15,7 +15,7 @@
                         {{ isset($estagio->id) ? 'Editar Estágio de Ensino do Idioma' : 'Cadastrar Estágio de Ensino do Idioma' }}
                     </h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('estagio.index') }}">Voltar</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('estagio.index') }}">Voltar</a>
                     </div>
                 </div>
 

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use OCILob;
+// use OCILob;
 
 class Aluno extends Model
 {
@@ -28,12 +28,10 @@ class Aluno extends Model
         if (!$ultimaMatricula  || $ultimaMatricula  == null) {
 
             $proxMatricula = '0001';
-
         } else {
 
             $dados = str_split($ultimaMatricula->matricula, 4);
             $proxMatricula = str_pad($dados[1] + 1, 4, 0, STR_PAD_LEFT);
-            
         }
 
         $proxMatricula = $ano . $proxMatricula;
@@ -50,4 +48,10 @@ class Aluno extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function contrato(){
+
+        return $this->belongsTo(Contrato::class);
+    }
+
 }

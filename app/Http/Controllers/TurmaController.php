@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Colaborador;
+use App\Models\Contrato;
 use App\Models\Curso;
 use App\Models\Estagio;
 use App\Models\Disciplina;
@@ -22,7 +23,8 @@ class TurmaController extends Controller
     public function index()
     {
         return view('app.turma.index', [
-            'turmas' => Turma::all()
+            // 'turmas' => Turma::all()
+            'turmas' => Turma::paginate(10)
         ]);
     }
 
@@ -57,7 +59,7 @@ class TurmaController extends Controller
             'nivel_id'                  => 'required|exists:nivels,id',
             'modalidade'                => 'required',
             'tipo'                      => 'required',
-            'colaborador_id'            => 'required|exists:users,id',
+            //'colaborador_id'            => 'required|exists:users,id',
             'data_inicio'               => 'required',
             'data_fim'                  => 'required',
             'primeiro_dia_semana'       => 'required',
@@ -141,7 +143,7 @@ class TurmaController extends Controller
             'nivel_id'                  => 'required|exists:nivels,id',
             'modalidade'                => 'required',
             'tipo'                      => 'required',
-            'colaborador_id'            => 'required|exists:users,id',
+            //'colaborador_id'            => 'required|exists:users,id',
             'data_inicio'               => 'required',
             'data_fim'                  => 'required',
             'primeiro_dia_semana'       => 'required',
@@ -188,5 +190,21 @@ class TurmaController extends Controller
     public function destroy(Turma $turma)
     {
         //
+    }
+
+
+
+    /**
+     * @return [type]
+     */
+    public function verAlunos($id){
+
+        $turma = Turma::find($id);
+
+        $contratos = Contrato::where('turma_id', $turma->id)->get();
+
+
+        return view('app.turma.alunos',['turma' => $turma,'contratos' => $contratos]);
+
     }
 }

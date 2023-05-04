@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Escolaridades</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('escolaridade.create') }}">Cadastrar Nova Escolaridade</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('escolaridade.create') }}">Cadastrar Nova Escolaridade</a>
                     </div>
                 </div>
 

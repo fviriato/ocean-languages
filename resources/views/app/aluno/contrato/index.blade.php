@@ -7,12 +7,12 @@
 @section('conteudo')
 
     <div class="row">
-        <div class="col-md-8 container-fluid">
+        <div class="col-md-11 container-fluid">
             <div class="card card-purple">
                 <div class="card-header">
                     <h3 class="card-title">Matricular Aluno</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('aluno.home') }}">Voltar</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('aluno.home') }}">Voltar</a>
                     </div>
                 </div>
 
@@ -30,10 +30,11 @@
                 @endif
 
                 @if (!empty($matricula->id))
-                    <form method="POST" action="{{ route('matricular.update', ['matricula' => $matricula->id]) }}">
+                    <form method="POST" action="{{ route('contrato.update', ['contrato' => $contrato->id]) }}">
                         @method('PUT')
                     @else
-                        <form method="POST" action="{{ route('aluno.matricular') }}">
+                        <form method="GET"
+                            action="{{ route('contrato.revisar', ['aluno' => $aluno->id ?? '', 'turma' => $turma->id ?? '']) }}">
                 @endif
 
                 @csrf
@@ -45,13 +46,27 @@
                                 <option></option>
                                 @foreach ($alunos as $aluno)
                                     <option value="{{ $aluno->id }}"
-                                        {{ ($aluno->aluno_id ?? old('aluno_id')) == $aluno->id ? 'selected' : '' }}> {{ $aluno->user->name }}</option>
+                                        {{ ($aluno->aluno_id ?? old('aluno_id')) == $aluno->id ? 'selected' : '' }}>
+                                        {{ $aluno->user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+
                     </div>
+{{-- 
+                    <div class="form-group col-sm-4">
+                        <label for="tipo">Tipo Contrato</label>
+                        <select name="tipo" class="form-control form-control-sm" id="tipo">
+                            <option></option>
+                            <option value="grupo" {{$turma->tipo == 'grupo' ?? 'selected'}}>Grupo</option>
+                            <option value="particular" {{$turma->tipo == 'particular' ?? 'selected'}}>Particular</option>
+                        </select>
+                    </div> --}}
+
+
+
                     <div class="row">
-                        <div class="form-group col-sm-12">
+                        <div class="form-group col-sm-8">
                             <label for="turma_id">Turma</label>
                             <select name="turma_id" class="form-control form-control-sm" id="turma_id">
                                 <option></option>
@@ -59,7 +74,7 @@
                                     <option value="{{ $turma->id }}"
                                         {{ $turma->user_id ?? old('turma_id') == $turma->id ? 'selected' : '' }}>
                                         {{ $turma->nome }}-
-                                        {{ $turma->curso->idiomaDisciplina->nome }}-
+                                        {{ $turma->curso->disciplina->nome }}-
                                         {{ $turma->curso->estagio->nome }}-
                                         {{ $turma->curso->nivel->nome }}-
                                         {{ $turma->modalidade }}-
@@ -79,11 +94,12 @@
                     <div class="row">
                         <div class="form-group col-sm-4">
                             <label for="valor_mensal">Valor Mensalidade</label>
-                            <input type="text" name="valor_mensal" class="form-control form-control-sm" id="valor_mensal"
-                                value="{{ $aluno->valor_mensal ?? old('valor_mensal') }}" placeholder="Ex. R$300,00">
+                            <input type="number" name="valor_mensal" class="form-control form-control-sm" id="valor_mensal"
+                                value="{{ $aluno->valor_mensal ?? old('valor_mensal') }}" placeholder="Ex. R$300,00"
+                                step="0.01">
                         </div>
                         <div class="form-group col-sm-4">
-                            <label for="data_pagamento">Data Pagamento</label>
+                            <label for="data_pagamento">Dia Pagamento Mensalidade</label>
                             <input type="number" name="data_pagamento" class="form-control form-control-sm"
                                 id="data_pagamento" value="{{ $aluno->data_pagamento ?? old('data_pagamento') }}"
                                 min="1" max="31" step="1" placeholder="Ex. 10">
@@ -92,9 +108,9 @@
                     <div class="row">
                         <div class="form-group col-sm-4">
                             <label for="material_didatico">Preço Material Didático</label>
-                            <input type="text" name="material_didatico" class="form-control form-control-sm"
+                            <input type="number" name="material_didatico" class="form-control form-control-sm"
                                 id="material_didatico" value="{{ $aluno->material_didatico ?? old('material_didatico') }}"
-                                placeholder="Ex. R$280,00">
+                                placeholder="Ex. R$280,00" step="0.01">
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="parcelas">N° de Parcelas</label>
@@ -103,6 +119,7 @@
                                 step="1" placeholder="Ex. 6">
                         </div>
                     </div>
+
                 </div>
 
                 <div class="card-footer">

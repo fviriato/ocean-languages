@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Idiomas e Disciplinas</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('disciplina.create') }}">Cadastrar Idioma ou Disciplina</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('disciplina.create') }}">Cadastrar Idioma ou Disciplina</a>
                     </div>
                 </div>
 

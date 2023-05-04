@@ -2,11 +2,15 @@
 
 namespace Database\Factories;
 
+use App\Models\Genero;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
+
+    protected $model = User::class;
     /**
      * Define the model's default state.
      *
@@ -15,18 +19,19 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'data_nascimento' => $this->faker->date(),
-            'genero_id' => $this->faker->numberBetween(1, 3),
-            'cpf' => $this->faker->unique()->numberBetween(00000000000, 99999999999),
-            'rg' => $this->faker->unique()->numberBetween(000000000, 999999999),
-            'telefone' => $this->faker->phoneNumber(),
-            'tipo' => $this->faker->randomElement(['aluno','colaborador']),
+            'name'              => $this->faker->name(),
+            'email'             => $this->faker->unique()->safeEmail(),
+            'data_nascimento'   => $this->faker->date(),
+            'genero_id'         => Genero::factory(),
+            'cpf'               => $this->faker->unique()->numberBetween(00000000000, 99999999999),
+            'rg'                => $this->faker->unique()->numberBetween(000000000, 999999999),
+            'telefone'          => $this->faker->phoneNumber(),
+            'tipo'              => $this->faker->randomElement(['aluno', 'colaborador']),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'password'          => bcrypt('admin'), // password
+            'remember_token'    => Str::random(10),
         ];
+
     }
 
     /**

@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">{{ isset($escola->id) ? 'Editar Escola' : 'Cadastrar Escola' }}</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('escola.index') }}">Voltar</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('escola.index') }}">Voltar</a>
                     </div>
                 </div>
 

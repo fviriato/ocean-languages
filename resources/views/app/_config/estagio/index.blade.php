@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Estágio de Ensino</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('estagio.create') }}">Cadastrar Estagio de Ensino</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('estagio.create') }}">Cadastrar Estagio de Ensino</a>
                     </div>
                 </div>
 

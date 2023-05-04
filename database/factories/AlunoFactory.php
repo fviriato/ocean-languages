@@ -2,10 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Aluno;
+use App\Models\Endereco;
+use App\Models\Escola;
+use App\Models\Escolaridade;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AlunoFactory extends Factory
 {
+
+    protected $model = Aluno::class;
+
     /**
      * Define the model's default state.
      *
@@ -13,9 +21,12 @@ class AlunoFactory extends Factory
      */
     public function definition()
     {
+        $aluno = new Aluno();
         return [
-            'escola_id' => $this->faker->numberBetween(1,11),
-            'escolaridade_id' => $this->faker->numberBetween(1, 8)
+            'user_id'         => User::factory(),
+            'matricula'       => $aluno->gerarMatriculaAluno(),
+            'escola_id'       => Escola::factory(),
+            'escolaridade_id' => Escolaridade::factory()
         ];
     }
 }

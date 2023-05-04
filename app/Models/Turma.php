@@ -19,8 +19,9 @@ class Turma extends Model
         'hora_fim',
         'primeiro_dia_semana',
         'segundo_dia_semana',
-        'modalidde',
-        'tipo'
+        'modalidade',
+        'tipo',
+        'max_alunos'
     ];
 
 
@@ -34,8 +35,8 @@ class Turma extends Model
         return $this->belongsTo(Colaborador::class);
     }
 
-    public function disciplina()
-    {
-        return $this->belongsTo(Disciplina::class);
-    }
+    // public function disciplina()
+    // {
+    //     return $this->belongsTo(Disciplina::class);
+    // }
 }

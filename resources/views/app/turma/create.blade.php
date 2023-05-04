@@ -115,6 +115,11 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-sm-1">
+                            <label for="max_alunos">N° Máx Alunos</label>
+                            <input type="number" name="max_alunos" class="form-control form-control-sm" id="max_alunos" value="{{ $turma->max_alunos ?? old('max_alunos') }}">
+                        </div>
+
                     </div>
 
                     <div class="row">

@@ -15,7 +15,7 @@
                         {{ isset($nivel->id) ? 'Editar Nível de Ensino do Idioma' : 'Cadastrar Nível de Ensino do Idioma' }}
                     </h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('nivel.index') }}">Voltar</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('nivel.index') }}">Voltar</a>
                     </div>
                 </div>
 

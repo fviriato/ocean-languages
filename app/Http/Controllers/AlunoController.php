@@ -40,6 +40,7 @@ class AlunoController extends Controller
     public function index()
     {
         $alunos = Aluno::with(['user'])->paginate(10);
+        // dd($alunos->all());
         return view('app.aluno.index', [
             'alunos' => $alunos
         ]);
@@ -76,7 +77,6 @@ class AlunoController extends Controller
         if ($request->foto) {
 
             $request['foto'] = $request->foto->store(public_path('users'));
-
         }
 
         DB::beginTransaction();
@@ -241,22 +241,6 @@ class AlunoController extends Controller
         ]);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function matricular(Request $request, $id)
-    {
-
-        return view('app.aluno.matricular', [
-            'alunos'  => Aluno::with('user')->get()->sortBy('user.name'),
-            'turmas'  => Turma::all()
-        ]);
-    }
 
     /**
      * Remove the specified resource from storage.

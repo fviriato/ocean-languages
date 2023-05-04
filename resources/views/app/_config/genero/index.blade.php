@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Gêneros</h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('genero.create') }}">Cadastrar Novo</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('genero.create') }}">Cadastrar Novo</a>
                     
                     
                     </div>

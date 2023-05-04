@@ -15,7 +15,7 @@
                         {{ isset($disciplina->id) ? 'Editar Idioma ou Disciplina' : 'Cadastrar Idioma ou Disciplina' }}
                     </h3>
                     <div class="card-tools">
-                        <a class="btn-xs bg-indigo" href="{{ route('disciplina.index') }}">Voltar</a>
+                        <a class="btn-xs bg-yellow" href="{{ route('disciplina.index') }}">Voltar</a>
                     </div>
                 </div>
 
@@ -33,7 +33,8 @@
                 @endif
 
                 @if (!empty($disciplina->id))
-                    <form method="POST" action="{{ route('disciplina.update', ['disciplina' => $disciplina ?? ('')->id]) }}">
+                    <form method="POST"
+                        action="{{ route('disciplina.update', ['disciplina' => $disciplina ?? ('')->id]) }}">
                         @method('PUT')
                     @else
                         <form method="POST" action="{{ route('disciplina.store') }}">
@@ -43,17 +44,16 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="nome">Nome</label>
-                            <input type="text" class="form-control form-control-sm" name="nome"
-                                id="exampleInputEmail1" placeholder="Nome do Idioma ou Disciplina"
-                                value="{{ $disciplina->nome ?? old('nome') }}">
+                            <input type="text" class="form-control form-control-sm" name="nome" id="nome"
+                                placeholder="Nome do Idioma ou Disciplina" value="{{ $disciplina->nome ?? old('nome') }}">
                         </div>
                         <div class="form-group col-sm-5">
                             <label for="tipo">Tipo</label>
                             <select name="tipo" class="form-control form-control-sm" id="tipo">
                                 <option></option>
-                                <option {{ $disciplina->tipo == 'idioma' ? 'selected' : '' }} value="idioma">Idioma
+                                <option {{ isset($disciplina->tipo) == 'idioma' ? 'selected' : '' }} value="idioma">Idioma
                                 </option>
-                                <option {{ $disciplina->tipo == 'reforco' ? 'selected' : '' }} value="reforco">
+                                <option {{ isset($disciplina->tipo) == 'reforco_escolar' ? 'selected' : '' }} value="reforco_escolar">
                                     Disciplina de Reforço</option>
                             </select>
                         </div>

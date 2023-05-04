@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sessao;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +24,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $request['ip'] = $request->ip();
+        $request['navegador'] = $_SERVER['HTTP_USER_AGENT'];
+        $request['login'] = date('Y-m-d H:i:s', time());
+        $request['user_id'] = Auth::user()->id;
+
+        Sessao::create($request->all());
+
+        // dd($request->all());
+
         return view('app.home');
     }
 
@@ -48,5 +61,13 @@ class HomeController extends Controller
     public function gerencial()
     {
         return view('app.gerencial');
+    }
+
+    public function logout(Sessao $sessao)
+    {
+
+        dd($sessao);
+
+
     }
 }

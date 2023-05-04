@@ -15,8 +15,8 @@ class CreateContratosTable extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('aluno_id');
-            $table->string('numero');
+            $table->unsignedBigInteger('aluno_id')->unique();
+            $table->string('numero')->nullable();
             $table->date('inicio_vigencia')->nullable();
             $table->date('termino_vigencia')->nullable();
             $table->double('valor_mensal', 10, 2);
@@ -29,7 +29,7 @@ class CreateContratosTable extends Migration
             $table->integer('parcelas');
             $table->enum('status_contrato',['vigente','expirado']);
             $table->enum('tipo',['aula_particular','aula_grupo','consultoria_escolar']);
-            $table->unique('aluno_id');
+            // $table->unique('aluno_id');
             $table->timestamps();
             $table->foreign('aluno_id')->references('id')->on('alunos');
         });

@@ -30,7 +30,8 @@
                 @endif
 
                 @if (!empty($user->id))
-                    <form method="POST" action="{{ route('aluno.update', ['aluno' => $user->id]) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('aluno.update', ['aluno' => $user->id]) }}"
+                        enctype="multipart/form-data">
                         @method('PUT')
                     @else
                         <form method="POST" action="{{ route('aluno.store') }}" enctype="multipart/form-data">
@@ -67,21 +68,23 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-sm-4">
-                            <label for="email">E-mail</label>
-                            <input type="email" name="email" class="form-control form-control-sm" id="email"
-                                value="{{ $user->email ?? old('email') }}" placeholder="E-mail do Aluno">
+                        <div class="form-group col-sm-3">
+                            <label for="rg">RG</label>
+                            <input type="text" name="rg" class="form-control form-control-sm rg" id="rg"
+                                value="{{ $user->rg ?? old('rg') }}" placeholder="RG do Aluno" maxlength="14">
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="cpf">CPF</label>
                             <input type="text" name="cpf" class="form-control form-control-sm cpf" id="cpf"
                                 value="{{ $user->cpf ?? old('cpf') }}" placeholder="CPF do Aluno" maxlength="11">
                         </div>
-                        <div class="form-group col-sm-3">
-                            <label for="rg">RG</label>
-                            <input type="text" name="rg" class="form-control form-control-sm" id="rg"
-                                value="{{ $user->rg ?? old('rg') }}" placeholder="RG do Aluno" maxlength="14">
+
+                        <div class="form-group col-sm-4">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="email" class="form-control form-control-sm" id="email"
+                                value="{{ $user->email ?? old('email') }}" placeholder="E-mail do Aluno">
                         </div>
+
                         <div class="form-group col-sm-2">
                             <label for="telefone">Telefone</label>
                             <input type="text" name="telefone" class="form-control form-control-sm telefone"
@@ -201,12 +204,12 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-sm-4">
-                            <label for="responsavel_email">E-mail do Responsável</label>
-                            <input type="email" name="responsavel_email" class="form-control form-control-sm"
-                                id="responsavel_email"
-                                value="{{ $responsavel->user->email ?? old('responsavel_email') }}"
-                                placeholder="E-mail do Responsável">
+
+                        <div class="form-group col-sm-3">
+                            <label for="responsavel_rg">RG do Responsável</label>
+                            <input type="text" name="responsavel_rg" class="form-control form-control-sm rg"
+                                id="responsavel_rg" value="{{ $responsavel->user->rg ?? old('responsavel_rg') }}"
+                                placeholder="RG do Responsável" maxlength="14">
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="responsavel_cpf">CPF do Responsável</label>
@@ -214,11 +217,12 @@
                                 id="responsavel_cpf" value="{{ $responsavel->user->cpf ?? old('responsavel_cpf') }}"
                                 placeholder="CPF do Responsável" maxlength="11">
                         </div>
-                        <div class="form-group col-sm-3">
-                            <label for="responsavel_rg">RG do Responsável</label>
-                            <input type="text" name="responsavel_rg" class="form-control form-control-sm"
-                                id="responsavel_rg" value="{{ $responsavel->user->rg ?? old('responsavel_rg') }}"
-                                placeholder="RG do Responsável" maxlength="14">
+                        <div class="form-group col-sm-4">
+                            <label for="responsavel_email">E-mail do Responsável</label>
+                            <input type="email" name="responsavel_email" class="form-control form-control-sm"
+                                id="responsavel_email"
+                                value="{{ $responsavel->user->email ?? old('responsavel_email') }}"
+                                placeholder="E-mail do Responsável">
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="responsavel_telefone">Telefone do Resp.</label>
@@ -318,7 +322,8 @@
                 </div>
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">{{ isset($user->id) ? 'Atualizar' : 'Cadastrar' }}</button>
+                    <button type="submit"
+                        class="btn btn-primary">{{ isset($user->id) ? 'Atualizar' : 'Cadastrar' }}</button>
                 </div>
                 </form>
             </div>

@@ -11,13 +11,23 @@ class Contrato extends Model
 
     protected $fillable = [
         'aluno_id',
+        'turma_id',
         'numero',
-        'data_inicio',
-        'primeiro_dia_semana',
-        'segundo_dia_semana',
-        'hora_inicio',
-        'hora_fim',
         'valor_mensal',
-        'data_pagamento'
+        'data_pagamento',
+        'material_didatico',
+        'parcelas',
+        'status_contrato',
+        'tipo',
     ];
+
+    public function aluno()
+    {
+        return $this->belongsTo(Aluno::class);
+    }
+
+    public function turma()
+    {
+        return $this->belongsTo(Turma::class);
+    }
 }
