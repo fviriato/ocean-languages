@@ -14,4 +14,9 @@ class ColaboradorDisciplina extends Model
         'disciplina_id',
         'data_cadastro'
     ];
+
+    public function disciplina()
+    {
+        return $this->belongsTo(Disciplina::class);
+    }
 }

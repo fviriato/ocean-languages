@@ -21,7 +21,7 @@
                     <table class="table table-bordered table-hover table-sm">
                         <thead>
                             <tr>
-                                <th>Registro</th>
+                                {{-- <th>Registro</th> --}}
                                 <th>Professor</th>
                                 <th>DT Nasc</th>
                                 <th>Telefone</th>
@@ -33,7 +33,7 @@
 
                             @foreach ($colaboradores as $colaborador)
                                 <tr>
-                                    <td>{{ $colaborador->registro }}</td>
+                                    {{-- <td>{{ $colaborador->registro }}</td> --}}
                                     <td>{{ $colaborador->user->name }}</td>
                                     <td>{{ date('d/m/Y', strtotime($colaborador->user->data_nascimento)) }}</td>
                                     <td>{{ $colaborador->user->telefone }}</td>
@@ -41,6 +41,9 @@
                                     <td class="text-center">
                                         <a href="{{ route('professor.edit', ['professor' => $colaborador->id]) }}">
                                             <span class="badge bg-primary">Editar</span>
+                                        </a>
+                                        <a href="{{ route('professor.materias', ['professor' => $colaborador->id]) }}">
+                                            <span class="badge bg-success">Matérias</span>
                                         </a>
                                     </td>
 

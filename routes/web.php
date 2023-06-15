@@ -43,6 +43,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 route::get('/home/aluno', [AlunoController::class, 'home'])->name('aluno.home');
 route::resource('/aluno', AlunoController::class);
 route::get('/home/professor', [ProfessorController::class, 'home'])->name('professor.home');
+route::get('/home/professor/{professor}/materias', [ProfessorController::class, 'materias'])->name('professor.materias');
+route::get('/home/professor/{materia}/{colaborador}/deletar', [ProfessorController::class, 'deletarMateria'])->name('professor.materia.deletar');
+route::post('/home/professor/materias', [ProfessorController::class, 'cadastrar'])->name('professor.materia.cadastrar');
 route::resource('/professor', ProfessorController::class);
 
 route::get('/contrato/home', [ContratoController::class, 'home'])->name('contrato.home');

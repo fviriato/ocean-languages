@@ -3,6 +3,7 @@ $('.rg').mask('00.000.000-0');
 $('.cep').mask('00000-000');
 $('.telefone').mask('(00) 00000-0000');
 
+
 $(document).on('blur', '#cep', function () {
 
     const cep = $(this).val();
@@ -73,43 +74,64 @@ $(document).on('click', '#endereco_aluno', function () {
     }
 });
 
-$(document).on('click', '#salvar_materia_professor', function (event) {
-    event.preventDefault();
 
-    var item = $("#idioma_disciplina").val();
+// $(document).on('click', '#salvar_materia_professor', function (event) {
+//     event.preventDefault();
 
-    $('#materias')
+//     var newRow = $("<tr>");
+//     var cols = "";
+//     var idItem = $('#idioma_disciplina').val(); //obter o ID
+//     var item = $('#idioma_disciplina option:selected').text(); //obtem o texto do select
+
+//     if (item == '') {
+
+//         alert('Selecionar a Matéria');
+
+//     } else {
+
+//         cols += '<td class="text-center">' + idItem + '</td>';
+//         cols += '<td class="text-center">' + item + '</td>';
+//         cols += '<td class="text-center">';
+//         cols += '<button class="btn btn-danger btn-sm" onclick="RemoveTableRow(this)" type="button">Remover</button>';
+//         cols += '</td>';
+//         newRow.append(cols);
+//         $("#materias").append(newRow);
+
+//         $('#idioma_disciplina').val('');
+
+//     }
+
+// })
 
 
-        (function ($) {
-            AddTableRow = function () {
-                var newRow = $("<tr>");
-                var cols = "";
+// $(function ($) {
+//     RemoveTableRow = function (item) {
 
-                cols += '<td>' + item + '</td>'
+//         var tr = $(item).closest('tr');
+//         tr.fadeOut(400, function () {
+//             tr.remove();
+//         });
 
-                newRow.append(cols);
-                $("#materias").append(newRow);
-            }
-        });
-
-});
+//         return false;
+//     }
+// });
 
 
-$(function($) {
-    AddTableRow = function() {
-  
-      var newRow = $("<tr>");
-      var cols = "";
+// $('#salvar_dados_professor').click(function (event) {
+//     event.preventDefault();
 
-        var item = $("#idioma_disciplina").val();
+//     var dados = $('FormProfessor').serialize();
 
-        cols += '<td valign="center">' + item + '</td>'
-        cols += '<td>';
-        cols += '<button class="btn btn-danger btn-sm" onclick="RemoveTableRow(this)" type="button">Remover</button>';
-        cols += '</td>';
+//     $.ajax({
+//         url: "{{ route('professor.home') }}",
+//         type: 'post',
+//         data: dados,
+//         dataType: 'json',
+//         success: function (response) {
+//             console.log(response);
+//         }
+//     });
 
-        newRow.append(cols);
-        $("#materias").append(newRow);
-    }
-});
+// });
+
+

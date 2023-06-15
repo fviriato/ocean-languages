@@ -17,7 +17,7 @@ class CreateColaboradorDisciplinasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('colaborador_id');
             $table->unsignedBigInteger('disciplina_id');
-            $table->date('data_casdastro');
+            $table->date('data_cadastro');
             $table->timestamps();
             $table->foreign('colaborador_id')->references('id')->on('colaboradors');
             $table->foreign('disciplina_id')->references('id')->on('disciplinas');
